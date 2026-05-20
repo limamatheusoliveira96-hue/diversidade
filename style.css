@@ -1,0 +1,111 @@
+
+        body{
+background-color: #eb6fb3;
+        }
+        #quemsou
+        {
+            background-color: rgb(144, 134, 163);
+        }
+
+        h4{
+            text-align: center;
+        }
+        #bg_carro
+        {
+            background-image: url("bg_lgbt.png");
+            background-size: 600px ;
+        }
+        .carrosel-itens
+        {
+
+        border-radius: 50px;
+        }
+        #Linguagens
+{
+    overflow: hidden; /*estava no auto, modifiquei pro hidden, pois sempre ficara com scrool os fips cards*/
+    width: 100%;
+}
+
+
+.flip-card{
+
+    width:30%;
+    height: 300px;
+    perspective: 1000px;
+    float: left;
+    margin: 1.5%
+}
+
+@media(max-width: 768px)
+{.flip-card{
+    width: 90%;
+    margin: 5% auto;
+    float: none;
+    display: block;
+    }
+}
+
+.flip-card-inner
+{
+    width: 100%;
+    height: 100%;
+    transition: transform 1.6s;
+    transform-style:  preserve-3d;
+    position: relative;
+   
+}
+
+.flip-card-front, .flip-card-back
+{
+position: absolute;
+width: 100%;
+height: 100%;
+backface-visibility: hidden;
+border-radius: 0.5rem;
+display: flex;
+justify-content: center;
+align-items: center;
+color: white;
+
+}
+.flip-card-front
+{
+    background-color: black;
+    
+}
+
+.flip-card-back
+{
+    transform: rotateY(180deg);
+    padding: 4%;
+    
+}
+#bobwilson
+{
+    background-color: rgb(116, 103, 103);
+
+}
+#pinab
+{
+    background-color: rgb(124, 124, 124);
+}
+#marina
+{
+    background-color: rgb(110, 82, 82);
+}
+.flipped
+{
+    transform: rotateY(180deg);
+    
+}
+
+head
+{
+    background-color: #eb6fb3;
+}
+#inicial
+{
+    background-image: url("Laboratório\ de\ Inovação\ e\ Diversidade.png");
+    background-size: cover;
+    height: 400px;
+}
