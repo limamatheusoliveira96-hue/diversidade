@@ -1054,32 +1054,34 @@ A memória é uma ferramenta política!🏳️‍🌈🏳‍⚧
 
 </style>
 
-<section style="padding:80px 20px; background:#0e0b16; color:white;">
+<section id="lampiao" style="padding:80px 20px; background:#ffe6d1; color:#000;">
 
     <div style="max-width:900px; margin:0 auto;">
 
-        <!-- TÍTULO ESTILO JORNAL -->
+        <!-- TÍTULO -->
         <h2 style="
-            font-family:'Playfair Display', serif;
+            font-family:Arial, Helvetica, sans-serif;
             font-size:2.5rem;
             text-align:center;
-            color:#ff4fd8;
+            color:#000;
             margin-bottom:10px;
+            letter-spacing:1px;
+            text-transform:uppercase;
         ">
             Arquivo Jornalístico
         </h2>
 
         <!-- SUBTÍTULO -->
         <p style="
-            font-family:'Libre Baskerville', serif;
+            font-family:Arial, Helvetica, sans-serif;
             text-align:center;
-            color:#bbb;
+            color:#333;
             margin-bottom:40px;
         ">
             Registro digitalizado de publicações e memórias impressas
         </p>
 
-        <!-- CONTEÚDO TIPO MATÉRIA -->
+        <!-- CONTEÚDO -->
         <div style="
             display:flex;
             flex-direction:column;
@@ -1087,7 +1089,7 @@ A memória é uma ferramenta política!🏳️‍🌈🏳‍⚧
             align-items:center;
         ">
 
-            <!-- IMAGEM DO PDF (CAPA) -->
+            <!-- CAPA PDF -->
             <a href="lambi.pdf" target="_blank"
                style="display:block; width:100%; max-width:600px;">
 
@@ -1095,7 +1097,7 @@ A memória é uma ferramenta política!🏳️‍🌈🏳‍⚧
                 style="
                     width:100%;
                     border-radius:10px;
-                    box-shadow:0 15px 40px rgba(0,0,0,.5);
+                    box-shadow:0 10px 25px rgba(0,0,0,.2);
                     transition:.3s;
                 "
                 onmouseover="this.style.transform='scale(1.02)'"
@@ -1105,12 +1107,12 @@ A memória é uma ferramenta política!🏳️‍🌈🏳‍⚧
 
             <!-- TEXTO ESTILO JORNAL -->
             <div style="
-                font-family:'Libre Baskerville', serif;
+                font-family:Arial, Helvetica, sans-serif;
                 font-size:1rem;
-                line-height:1.8;
+                line-height:1.7;
                 max-width:700px;
                 text-align:justify;
-                color:#ddd;
+                color:#111;
             ">
 
                 <p>
@@ -1127,18 +1129,23 @@ A memória é uma ferramenta política!🏳️‍🌈🏳‍⚧
             </div>
 
             <!-- BOTÃO -->
-            <a href="pdf/seu-arquivo.pdf" target="_blank"
+            <a href="lambi.pdf" target="_blank"
                style="
-                   padding:12px 20px;
+                   padding:12px 22px;
                    border-radius:30px;
                    text-decoration:none;
                    color:white;
                    font-size:13px;
+                   font-family:Arial, Helvetica, sans-serif;
 
-                   background:linear-gradient(45deg,#ff4fd8,#7a2cff,#4dd6ff);
-                   background-size:200% 200%;
-               ">
+                   background:#000;
+                   transition:.3s;
+               "
+               onmouseover="this.style.background='#333'"
+               onmouseout="this.style.background='#000'">
+
                 Abrir jornal completo →
+
             </a>
 
         </div>
@@ -1179,12 +1186,17 @@ A memória é uma ferramenta política!🏳️‍🌈🏳‍⚧
 
 <style>
 .graffiti{
-    font-family:'Bangers', cursive;
-    color:#ff4fd8;
+    font-family:'Black Ops One', Impact, Arial Black, sans-serif;
+    color:#000;
+
+    text-transform:uppercase;
+    letter-spacing:4px;
+
     text-shadow:
-        2px 2px 0 #7a2cff,
-        4px 4px 0 #4dd6ff;
-    letter-spacing:3px;
+        2px 2px 0 #333,
+        4px 4px 0 #999;
+
+    -webkit-text-stroke: 1px #000;
 }
 
 /* CARD DA GALERIA */
