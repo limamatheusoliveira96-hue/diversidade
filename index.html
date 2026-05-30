@@ -554,7 +554,7 @@
                     <div class="flip-card-inner">
 
                         <div class="flip-card-front">
-                            <img src="duda-salabert.jpg" alt="">
+                            <img src="dudasalaber.png" alt="imagem de uma mulher">
                             <h5>Duda Salabert</h5>
                         </div>
 
@@ -1054,27 +1054,46 @@ A memória é uma ferramenta política!🏳️‍🌈🏳‍⚧
 
 </style>
 
-<<section id="lampiao" style="padding:70px 20px; background:#0e0b16; color:white; text-align:center;">
+<<section style="text-align:center; padding:40px;">
 
-    <h2 style="color:#ff4fd8; font-size:2.2rem;">
-        Documento do Acervo
+    <h2>Arquivo do Acervo</h2>
+
+    <a href="lampi.pdf" target="_blank"
+       style="
+       background:linear-gradient(45deg,#ff4fd8,#7a2cff);
+       padding:12px 18px;
+       color:white;
+       border-radius:30px;
+       text-decoration:none;
+       ">
+        Abrir PDF
+    </a>
+
+</section>
+
+
+    
+<section id="entrada-galeria" style="padding:80px 20px; background:#0e0b16; color:white; text-align:center;">
+
+    <h2 style="font-size:2.4rem; color:#ff4fd8; margin-bottom:10px;">
+        Galeria de Memórias
     </h2>
 
-    <p style="max-width:600px; margin:10px auto 30px; color:#ddd;">
-        Um registro histórico disponível para leitura digital.
+    <p style="max-width:600px; margin:0 auto 30px; color:#ccc;">
+        Um acervo visual de histórias, corpos e resistência.
     </p>
 
-    <!-- CAPA DO DOCUMENTO -->
-    <div class="pdf-card">
+    <!-- IMAGEM DE DESTAQUE -->
+    <div class="galeria-card">
 
-        <img src="lampi.pdf.jpg" alt="Capa do documento">
+        <img src="10.png" alt="Entrada da galeria">
 
-        <div class="pdf-overlay">
-            <h3>Jornal Histórico Digitalizado</h3>
-            <p>Clique para abrir o documento completo</p>
+        <div class="galeria-overlay">
+            <h3>Explorar Acervo Visual</h3>
+            <p>Fotografias, arquivos e colagens históricas</p>
 
-            <a href="pdf/seu-arquivo.pdf" target="_blank">
-                Abrir PDF →
+            <a href="galeria.html">
+                Entrar na Galeria →
             </a>
         </div>
 
@@ -1084,20 +1103,22 @@ A memória é uma ferramenta política!🏳️‍🌈🏳‍⚧
 
 <style>
 
-/* CARD DA CAPA */
+/* CARD DA GALERIA */
 
-.pdf-card{
+.galeria-card{
     position:relative;
-    width:85%;
-    max-width:700px;
+    width:90%;
+    max-width:750px;
     margin:0 auto;
-    border-radius:14px;
+    border-radius:18px;
     overflow:hidden;
-    box-shadow:0 15px 40px rgba(0,0,0,.5);
+    box-shadow:0 20px 50px rgba(0,0,0,.6);
     cursor:pointer;
 }
 
-.pdf-card img{
+/* IMAGEM */
+
+.galeria-card img{
     width:100%;
     display:block;
     transition:.5s;
@@ -1105,7 +1126,7 @@ A memória é uma ferramenta política!🏳️‍🌈🏳‍⚧
 
 /* OVERLAY */
 
-.pdf-overlay{
+.galeria-overlay{
     position:absolute;
     inset:0;
     background:linear-gradient(to top, rgba(0,0,0,.85), rgba(0,0,0,.2));
@@ -1113,7 +1134,7 @@ A memória é uma ferramenta política!🏳️‍🌈🏳‍⚧
     flex-direction:column;
     justify-content:flex-end;
     align-items:center;
-    padding:20px;
+    padding:25px;
     text-align:center;
     opacity:0;
     transition:.4s;
@@ -1121,32 +1142,31 @@ A memória é uma ferramenta política!🏳️‍🌈🏳‍⚧
 
 /* HOVER */
 
-.pdf-card:hover img{
-    transform:scale(1.05);
+.galeria-card:hover img{
+    transform:scale(1.06);
 }
 
-.pdf-card:hover .pdf-overlay{
+.galeria-card:hover .galeria-overlay{
     opacity:1;
 }
 
 /* TEXTO */
 
-.pdf-overlay h3{
-    margin:0;
+.galeria-overlay h3{
     color:#ff4fd8;
-    font-size:1.3rem;
+    margin:0;
+    font-size:1.4rem;
 }
 
-.pdf-overlay p{
+.galeria-overlay p{
     font-size:13px;
     color:#ddd;
-    margin:8px 0 12px;
+    margin:8px 0 14px;
 }
 
 /* BOTÃO */
 
-.pdf-overlay a{
-    display:inline-block;
+.galeria-overlay a{
     padding:10px 18px;
     border-radius:30px;
     text-decoration:none;
@@ -1158,42 +1178,12 @@ A memória é uma ferramenta política!🏳️‍🌈🏳‍⚧
     transition:.4s;
 }
 
-.pdf-overlay a:hover{
+.galeria-overlay a:hover{
     transform:scale(1.05);
     background-position:right;
 }
 
 </style>
-
-</style>
-<section id="galeria" style="padding:80px 20px; background:#0e0b16; color:white; text-align:center;">
-
-    <h2 style="font-size:2rem; margin-bottom:25px; color:#ff4fd8; letter-spacing:1px;">
-        Galeria
-    </h2>
-
-    <!-- IMAGEM SIMPLES -->
-    <a href="galeria.html" style="display:inline-block; max-width:700px; width:90%;">
-
-        <img src="10.png" alt="Galeria"
-        style="
-            width:100%;
-            border-radius:12px;
-            display:block;
-            transition:.3s;
-        "
-        onmouseover="this.style.transform='scale(1.02)'"
-        onmouseout="this.style.transform='scale(1)'">
-
-    </a>
-
-    <p style="margin-top:15px; font-size:13px; color:#bbb;">
-        Entrar no acervo visual
-    </p>
-
-</section>
-    
-    
     <section id="sobre">
 
     <div class="container">
