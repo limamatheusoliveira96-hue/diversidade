@@ -1,0 +1,766 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>TRANSVERSAR</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,700;1,300&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --blue:  #5BCEFA;
+      --pink:  #F5A9B8;
+      --white: #FFFFFF;
+      --black: #080808;
+      --dark:  #111111;
+      --mid:   #1a1a1a;
+      --gray:  #888;
+      --display: 'Bebas Neue', sans-serif;
+      --body:    'DM Sans', sans-serif;
+    }
+    *{margin:0;padding:0;box-sizing:border-box;}
+    html{scroll-behavior:smooth;}
+    body{background:var(--black);color:var(--white);font-family:var(--body);overflow-x:hidden;}
+
+    /* ── NAV ── */
+    nav{
+      position:fixed;top:0;left:0;width:100%;z-index:1000;
+      padding:1rem 1.5rem;display:flex;justify-content:space-between;align-items:center;
+      backdrop-filter:blur(20px);background:rgba(8,8,8,.75);
+      border-bottom:1px solid rgba(255,255,255,.06);
+    }
+    .logo{font-family:var(--display);font-size:1.5rem;letter-spacing:4px;
+      background:linear-gradient(90deg,var(--blue),var(--pink));
+      -webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+    .menu-icon{display:flex;flex-direction:column;gap:5px;cursor:pointer;z-index:1100;}
+    .menu-icon span{width:28px;height:3px;border-radius:10px;transition:.4s;}
+    .menu-icon span:nth-child(1){background:var(--blue);}
+    .menu-icon span:nth-child(2){background:var(--pink);}
+    .menu-icon span:nth-child(3){background:var(--white);}
+    .menu-icon.open span:nth-child(1){transform:rotate(45deg) translate(5px,6px);background:var(--pink);}
+    .menu-icon.open span:nth-child(2){opacity:0;}
+    .menu-icon.open span:nth-child(3){transform:rotate(-45deg) translate(5px,-6px);background:var(--blue);}
+
+    /* overlay menu */
+    .nav-overlay{
+      position:fixed;inset:0;background:var(--black);z-index:999;
+      display:flex;flex-direction:column;justify-content:center;align-items:flex-start;
+      padding:3rem 2rem;gap:.5rem;
+      transform:translateX(100%);transition:transform .5s cubic-bezier(.77,0,.175,1);
+    }
+    .nav-overlay.open{transform:translateX(0);}
+    .nav-overlay a{
+      font-family:var(--display);font-size:3rem;letter-spacing:3px;
+      color:var(--white);text-decoration:none;line-height:1.1;
+      border-bottom:1px solid rgba(255,255,255,.08);width:100%;padding:.6rem 0;
+      opacity:0;transform:translateX(40px);transition:color .3s,opacity .4s,transform .4s;
+    }
+    .nav-overlay.open a{opacity:1;transform:translateX(0);}
+    .nav-overlay.open a:nth-child(1){transition-delay:.08s;}
+    .nav-overlay.open a:nth-child(2){transition-delay:.13s;}
+    .nav-overlay.open a:nth-child(3){transition-delay:.18s;}
+    .nav-overlay.open a:nth-child(4){transition-delay:.23s;}
+    .nav-overlay.open a:nth-child(5){transition-delay:.28s;}
+    .nav-overlay.open a:nth-child(6){transition-delay:.33s;}
+    .nav-overlay.open a:nth-child(7){transition-delay:.38s;}
+    .nav-overlay a:hover{color:var(--pink);}
+
+    /* ── HERO ── */
+    .hero{
+      min-height:100svh;padding:7rem 1.5rem 3rem;
+      display:flex;flex-direction:column;justify-content:flex-end;
+      position:relative;overflow:hidden;
+    }
+    .hero-bg{
+      position:absolute;inset:0;
+      background:linear-gradient(160deg,#0a0a0a 30%,#1a0a15 70%,#080818 100%);
+    }
+    .orb{position:absolute;border-radius:50%;filter:blur(80px);pointer-events:none;}
+    .orb-1{width:300px;height:300px;background:rgba(91,206,250,.12);top:-50px;right:-80px;animation:float 8s ease-in-out infinite;}
+    .orb-2{width:200px;height:200px;background:rgba(245,169,184,.1);bottom:100px;left:-60px;animation:float 10s ease-in-out infinite reverse;}
+    @keyframes float{0%,100%{transform:translateY(0);}50%{transform:translateY(-20px);}}
+    .hero-tag{position:relative;z-index:2;font-size:.75rem;letter-spacing:4px;color:var(--pink);
+      text-transform:uppercase;margin-bottom:1rem;display:flex;align-items:center;gap:.5rem;}
+    .hero-tag::before{content:'';width:30px;height:1px;background:var(--pink);}
+    .hero h1{position:relative;z-index:2;font-family:var(--display);
+      font-size:clamp(4rem,22vw,7rem);letter-spacing:2px;line-height:.9;margin-bottom:1.5rem;}
+    .hero h1 span{display:block;background:linear-gradient(90deg,var(--blue),var(--pink),var(--white));
+      -webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+    .hero-desc{position:relative;z-index:2;font-size:.95rem;line-height:1.8;color:#aaa;margin-bottom:2.5rem;max-width:340px;}
+    .hero-actions{position:relative;z-index:2;display:flex;gap:1rem;align-items:center;flex-wrap:wrap;}
+    .btn-primary{padding:.9rem 2rem;border-radius:999px;
+      background:linear-gradient(90deg,var(--blue),var(--pink));
+      color:var(--black);font-weight:700;font-size:.85rem;text-decoration:none;letter-spacing:1px;transition:.3s;}
+    .btn-primary:hover{transform:translateY(-3px);box-shadow:0 10px 30px rgba(245,169,184,.3);}
+    .btn-ghost{font-size:.85rem;color:var(--gray);text-decoration:none;display:flex;align-items:center;gap:.4rem;transition:.3s;}
+    .btn-ghost:hover{color:var(--white);}
+
+    /* ── TICKER ── */
+    .ticker{overflow:hidden;background:linear-gradient(90deg,var(--blue),var(--pink),var(--white),var(--blue));padding:.65rem 0;}
+    .ticker-inner{display:flex;gap:2.5rem;animation:ticker 25s linear infinite;white-space:nowrap;}
+    .ticker-inner span{font-family:var(--display);font-size:.95rem;letter-spacing:3px;color:var(--black);}
+    @keyframes ticker{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+
+    /* ── SECTION HELPERS ── */
+    .sec-label{display:flex;align-items:center;gap:.75rem;font-size:.7rem;letter-spacing:4px;
+      text-transform:uppercase;color:var(--gray);margin-bottom:1.5rem;}
+    .sec-label::before{content:'';width:20px;height:1px;background:var(--gray);}
+    .sec-title{font-family:var(--display);font-size:clamp(3rem,16vw,5rem);
+      letter-spacing:2px;line-height:.95;margin-bottom:2rem;}
+    .fade-up{opacity:0;transform:translateY(30px);transition:opacity .7s ease,transform .7s ease;}
+    .fade-up.visible{opacity:1;transform:translateY(0);}
+
+    /* ── 1. LGBTQIAPN+ CAROUSEL (siglas) ── */
+    .siglas-section{padding:5rem 0 4rem 1.5rem;background:var(--dark);}
+    .siglas-section .sec-title{padding-right:1.5rem;}
+    .siglas-track{
+      display:flex;gap:1rem;overflow-x:auto;scroll-snap-type:x mandatory;
+      -webkit-overflow-scrolling:touch;padding-right:1.5rem;padding-bottom:1rem;scrollbar-width:none;
+    }
+    .siglas-track::-webkit-scrollbar{display:none;}
+    .sigla-card{
+      flex-shrink:0;width:220px;height:300px;border-radius:24px;
+      scroll-snap-align:start;display:flex;flex-direction:column;
+      justify-content:flex-end;padding:1.5rem 1.2rem;position:relative;overflow:hidden;
+    }
+    .sigla-card .letter{
+      font-family:var(--display);font-size:5rem;line-height:1;
+      position:absolute;top:.5rem;left:1rem;opacity:.15;
+    }
+    .sigla-card h3{font-family:var(--display);font-size:1.5rem;letter-spacing:1px;margin-bottom:.3rem;position:relative;z-index:2;}
+    .sigla-card p{font-size:.78rem;color:rgba(255,255,255,.75);line-height:1.5;position:relative;z-index:2;}
+    .sc-l{background:linear-gradient(135deg,#1a0530,#3d1a5a);}
+    .sc-g{background:linear-gradient(135deg,#0a2030,#0a4a6e);}
+    .sc-b{background:linear-gradient(135deg,#0a3020,#0a5a3a);}
+    .sc-t{background:linear-gradient(135deg,#30100a,#6e1a0a);}
+    .sc-q{background:linear-gradient(135deg,#28000a,#5a001a);}
+    .sc-i{background:linear-gradient(135deg,#201800,#5a4400);}
+    .sc-a{background:linear-gradient(135deg,#001020,#002a50);}
+    .sc-p{background:linear-gradient(135deg,#200030,#4a0070);}
+    .sc-n{background:linear-gradient(135deg,#001530,#003060);}
+    .sc-mais{background:linear-gradient(135deg,#1a1a1a,#333);}
+
+    /* ── 2. HISTORIA TRAVESTIS ── */
+    .historia-section{padding:5rem 1.5rem;background:var(--black);}
+    .xica-block{
+      border-radius:28px;overflow:hidden;
+      background:linear-gradient(160deg,#120010,#0a0020);
+      border:1px solid rgba(245,169,184,.15);
+      padding:2.5rem 1.5rem;margin-bottom:1.5rem;position:relative;
+    }
+    .xica-block::before{
+      content:'1591';position:absolute;top:1.5rem;right:1.5rem;
+      font-family:var(--display);font-size:4rem;color:rgba(255,255,255,.04);line-height:1;
+    }
+    .xica-block .xica-tag{font-size:.7rem;letter-spacing:3px;text-transform:uppercase;color:var(--pink);margin-bottom:1rem;
+      color: white;
+    }
+    .xica-block h2{font-family:var(--display);font-size:clamp(2.5rem,12vw,4rem);letter-spacing:2px;line-height:.95;margin-bottom:1.5rem;}
+    .xica-block h2 em{font-style:normal;color:var(--pink);}
+    .xica-block p{font-size:.9rem;line-height:1.9;color:#bbb;margin-bottom:1rem;}
+    .xica-block .xica-quote{
+      border-left:3px solid var(--pink);padding-left:1.2rem;margin:1.5rem 0;
+      font-style:italic;color:rgba(255,255,255,.7);font-size:.9rem;line-height:1.8;
+    }
+    .timeline-dot{
+      display:inline-flex;align-items:center;gap:.5rem;
+      font-size:.75rem;letter-spacing:2px;text-transform:uppercase;
+      color:var(--blue);margin-bottom:2rem;
+    }
+    .timeline-dot::before{content:'';width:8px;height:8px;background:var(--blue);border-radius:50%;}
+
+    /* ── 3. LUANA MUNIZ ── */
+    .luana-section{padding:5rem 1.5rem;background:var(--dark);}
+    .luana-grid{display:grid;grid-template-columns:1fr;gap:1.5rem;}
+    .video-wrap{border-radius:24px;overflow:hidden;background:#111;position:relative;}
+    .video-wrap video{width:100%;display:block;}
+    .video-caption{padding:1.5rem 1.2rem;}
+    .video-caption h3{font-family:var(--display);font-size:2.5rem;letter-spacing:2px;margin-bottom:.5rem;color:var(--pink);}
+    .video-caption .poem{font-size:.9rem;color:#999;line-height:2.2;font-style:italic;}
+    .luana-bio{
+      background:var(--mid);border-radius:24px;padding:1.8rem 1.5rem;
+      border:1px solid rgba(255,255,255,.06);
+    }
+    .luana-bio .luana-years{font-family:var(--display);font-size:1rem;color:var(--gray);letter-spacing:3px;margin-bottom:.8rem;}
+    .luana-bio p{font-size:.88rem;line-height:1.9;color:#ccc;}
+
+    /* ── 4. TRANSPOLITIZARTES ── */
+    .trans-section{padding:5rem 0 4rem 1.5rem;background:var(--black);}
+    .trans-section .sec-title{padding-right:1.5rem;}
+    .trans-track{
+      display:flex;gap:1rem;overflow-x:auto;scroll-snap-type:x mandatory;
+      -webkit-overflow-scrolling:touch;padding-right:1.5rem;padding-bottom:1rem;scrollbar-width:none;
+    }
+    .trans-track::-webkit-scrollbar{display:none;}
+    .trans-card{
+      flex-shrink:0;width:260px;border-radius:24px;background:var(--mid);
+      scroll-snap-align:start;overflow:hidden;position:relative;
+      border:1px solid rgba(255,255,255,.05);
+    }
+    .trans-card-top{height:160px;display:flex;align-items:center;justify-content:center;position:relative;}
+    .trans-card-top .initial{font-family:var(--display);font-size:5rem;color:rgba(255,255,255,.12);}
+    .trans-card-area{
+      position:absolute;bottom:.8rem;left:.8rem;
+      font-size:.65rem;letter-spacing:3px;text-transform:uppercase;
+      padding:.3rem .6rem;border-radius:999px;
+    }
+    .area-pol{background:rgba(91,206,250,.15);color:var(--blue);}
+    .area-art{background:rgba(245,169,184,.15);color:var(--pink);}
+    .trans-card-body{padding:1.2rem;}
+    .trans-card-body h3{font-family:var(--display);font-size:1.8rem;letter-spacing:1px;margin-bottom:.4rem;}
+    .trans-card-body .role{font-size:.75rem;letter-spacing:2px;text-transform:uppercase;color:var(--gray);margin-bottom:.8rem;}
+    .trans-card-body p{font-size:.82rem;line-height:1.7;color:#bbb;}
+    /* gradient tops */
+    .tc-katia .trans-card-top{background:linear-gradient(135deg,#2e1500,#6e3300);}
+    .tc-erika .trans-card-top{background:linear-gradient(135deg,#001a30,#003a6e);}
+    .tc-liniker .trans-card-top{background:linear-gradient(135deg,#1a001a,#4a004a);}
+    .tc-majur .trans-card-top{background:linear-gradient(135deg,#001818,#004040);}
+    .tc-urias .trans-card-top{background:linear-gradient(135deg,#1a0a00,#4a2000);}
+    .tc-duda .trans-card-top{background:linear-gradient(135deg,#0a001a,#20004a);}
+
+    /* ── 5. BAIXADA SANTISTA (bento assimétrico) ── */
+    .bs-section{padding:5rem 1.5rem;background:var(--dark);}
+    .bs-intro{margin-bottom:2rem;}
+    .bs-intro p{font-size:.9rem;line-height:1.8;color:#aaa;max-width:420px;}
+    .bs-grid{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:auto;gap:.75rem;}
+    .bs-item{border-radius:20px;overflow:hidden;background:var(--mid);position:relative;}
+    .bs-item.tall{grid-row:span 2;}
+    .bs-item.wide{grid-column:span 2;}
+    .bs-item .bs-img{width:100%;object-fit:cover;}
+    .bs-item.tall .bs-img{min-height:380px;}
+    .bs-text{padding:1.5rem 1.2rem;}
+    .bs-text .bs-name{font-family:var(--display);font-size:2.2rem;letter-spacing:2px;line-height:1;margin-bottom:.3rem;}
+    .bs-text .bs-role{font-size:.7rem;letter-spacing:3px;text-transform:uppercase;color:var(--gray);margin-bottom:.8rem;}
+    .bs-text p{font-size:.82rem;line-height:1.8;color:#bbb;}
+    .bs-accent{
+      background:linear-gradient(135deg,var(--blue),var(--pink));
+      display:flex;align-items:center;justify-content:center;padding:2rem 1.5rem;min-height:120px;
+    }
+    .bs-accent h3{font-family:var(--display);font-size:1.5rem;color:var(--black);letter-spacing:2px;text-align:center;}
+    .bs-quote{
+      padding:1.5rem;background:rgba(245,169,184,.05);border-left:3px solid var(--pink);
+      font-style:italic;font-size:.85rem;line-height:1.8;color:#ddd;
+    }
+
+    /* ── 6. DOCUMENTÁRIOS / TEATRO ── */
+    .docs-section{padding:5rem 1.5rem;background:var(--black);}
+    .doc-item{
+      display:flex;align-items:center;gap:1.5rem;padding:1.5rem 0;
+      border-bottom:1px solid rgba(255,255,255,.06);text-decoration:none;color:var(--white);
+      transition:.3s;position:relative;
+    }
+    .doc-item::after{content:'→';position:absolute;right:0;font-size:1.2rem;color:var(--gray);transition:.3s;}
+    .doc-item:hover::after{color:var(--pink);transform:translateX(4px);}
+    .doc-item:hover{padding-left:.5rem;}
+    .doc-num{font-family:var(--display);font-size:2rem;color:rgba(255,255,255,.12);min-width:50px;}
+    .doc-badge{
+      font-size:.65rem;letter-spacing:2px;text-transform:uppercase;
+      padding:.3rem .6rem;border-radius:999px;margin-bottom:.4rem;display:inline-block;
+    }
+    .badge-doc{background:rgba(91,206,250,.12);color:var(--blue);}
+    .badge-tea{background:rgba(245,169,184,.12);color:var(--pink);}
+    .doc-info h3{font-family:var(--display);font-size:1.3rem;letter-spacing:1px;margin-bottom:.2rem;}
+    .doc-info p{font-size:.78rem;color:var(--gray);line-height:1.5;}
+
+    /* ── 7. CRIADORES ── */
+    .criadores-section{padding:5rem 1.5rem;background:var(--dark);}
+    .creator-pill{
+      display:flex;align-items:center;gap:1.2rem;padding:1.2rem;
+      border-radius:16px;background:var(--mid);margin-bottom:1rem;
+      border:1px solid rgba(255,255,255,.04);
+    }
+    .creator-avatar{
+      width:70px;height:70px;border-radius:50%;flex-shrink:0;
+      background:linear-gradient(135deg,var(--blue),var(--pink));
+      display:flex;align-items:center;justify-content:center;
+      font-family:var(--display);font-size:1.8rem;color:var(--black);
+    }
+    .creator-pill h3{font-family:var(--display);font-size:1.4rem;letter-spacing:1px;margin-bottom:.3rem;}
+    .creator-pill p{font-size:.8rem;color:var(--gray);line-height:1.5;}
+
+    /* ── FOOTER ── */
+    footer{padding:4rem 1.5rem 2.5rem;background:#050505;border-top:1px solid rgba(255,255,255,.05);}
+    .footer-logo{font-family:var(--display);font-size:3.5rem;letter-spacing:4px;
+      background:linear-gradient(90deg,var(--blue),var(--pink));
+      -webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:1rem;}
+    .footer-desc{font-size:.85rem;color:var(--gray);line-height:1.8;margin-bottom:3rem;}
+    .footer-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-bottom:3rem;}
+    .footer-col h4{font-size:.7rem;letter-spacing:3px;text-transform:uppercase;color:var(--pink);margin-bottom:1.2rem;}
+    .footer-col a,.footer-col p{display:block;font-size:.88rem;color:var(--gray);text-decoration:none;margin-bottom:.7rem;transition:.3s;}
+    .footer-col a:hover{color:var(--white);}
+    .footer-bottom{border-top:1px solid rgba(255,255,255,.05);padding-top:1.5rem;
+      display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;}
+    .footer-bottom p{font-size:.75rem;color:#444;}
+    .footer-trans-flag{display:flex;gap:4px;align-items:center;}
+    .flag-stripe{width:12px;height:12px;border-radius:50%;}
+
+    /* ── DESKTOP ── */
+    @media(min-width:769px){
+      .menu-icon{display:none;}
+      .nav-overlay{
+        position:static;transform:none;flex-direction:row;background:transparent;
+        padding:0;gap:2rem;
+      }
+      .nav-overlay a{
+        font-family:var(--body);font-size:.88rem;letter-spacing:1px;border:none;
+        padding:0;opacity:1;transform:none;width:auto;color:#bbb;
+      }
+      .hero{flex-direction:row;align-items:flex-end;padding:8rem 8% 5rem;}
+      .hero h1{font-size:8rem;}
+      .luana-grid{grid-template-columns:1fr 1fr;}
+      .bs-grid{grid-template-columns:repeat(3,1fr);}
+    }
+  .sc-l{
+  background-image: url("L.jpg");
+  background-size: cover;
+  background-position: center;
+};
+    
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">TRANSVERSAR</div>
+  <div class="menu-icon" id="menuBtn"><span></span><span></span><span></span></div>
+</nav>
+<div class="nav-overlay" id="navOverlay">
+  <a href="#inicio"        onclick="closeMenu()">INÍCIO</a>
+  <a href="#lgbtqiapn"     onclick="closeMenu()">LGBTQIAPN+</a>
+  <a href="#travestis"     onclick="closeMenu()">TRAVESTIS</a>
+  <a href="#transpol"      onclick="closeMenu()">TRANSPOLITIZARTES</a>
+  <a href="#baixada"       onclick="closeMenu()">BAIXADA SANTISTA</a>
+  <a href="#docs"          onclick="closeMenu()">DOCUMENTÁRIOS</a>
+  <a href="#criadores"     onclick="closeMenu()">CRIADORES</a>
+</div>
+
+<!-- ══ HERO ══ -->
+<section class="hero" id="inicio">
+  <div class="hero-bg"><div class="orb orb-1"></div><div class="orb orb-2"></div></div>
+  <div style="position:relative;z-index:2;">
+    <div class="hero-tag">Arte · Memória · Resistência</div>
+    <h1><span>TRANS</span><span>VERSAR</span></h1>
+    <p class="hero-desc">Um espaço de visibilidade, arte, memória e resistência LGBTQIAPN+. Histórias, cultura e identidade através do design e da expressão.</p>
+    <div class="hero-actions">
+      <a href="#lgbtqiapn" class="btn-primary">EXPLORAR</a>
+      <a href="#docs" class="btn-ghost">Ver documentários ↓</a>
+    </div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-inner">
+    <span>ARTE</span><span>✦</span><span>RESISTÊNCIA</span><span>✦</span>
+    <span>MEMÓRIA</span><span>✦</span><span>VISIBILIDADE</span><span>✦</span>
+    <span>IDENTIDADE</span><span>✦</span><span>TRANSVERSAR</span><span>✦</span>
+    <span>ARTE</span><span>✦</span><span>RESISTÊNCIA</span><span>✦</span>
+    <span>MEMÓRIA</span><span>✦</span><span>VISIBILIDADE</span><span>✦</span>
+    <span>IDENTIDADE</span><span>✦</span><span>TRANSVERSAR</span><span>✦</span>
+  </div>
+</div>
+
+<!-- ══ 1. LGBTQIAPN+ ══ -->
+<section class="siglas-section fade-up" id="lgbtqiapn">
+  <div class="sec-label">QUEM SOMOS</div>
+  <div class="sec-title">LGBTQIAPN+</div>
+  <div class="siglas-track">
+
+    <div class="sigla-card sc-l">
+      <div class="letter">L</div>
+ 
+   
+      <h3>LÉSBICA</h3>
+      <p>Mulher que se atrai afetiva e sexualmente por outras mulheres.</p>
+    </div>
+
+    <div class="sigla-card sc-g">
+      <div class="letter">G</div>
+      <h3>GAY</h3>
+      <p>Homem que se atrai afetiva e sexualmente por outros homens.</p>
+    </div>
+
+    <div class="sigla-card sc-b">
+      <div class="letter">B</div>
+      <h3>BISSEXUAL</h3>
+      <p>Pessoa que se atrai por mais de um gênero, incluindo o próprio.</p>
+    </div>
+
+    <div class="sigla-card sc-t">
+      <div class="letter">T</div>
+      <h3>TRAVESTI / TRANS</h3>
+      <p>Pessoa cuja identidade de gênero difere do sexo atribuído ao nascer.</p>
+    </div>
+
+    <div class="sigla-card sc-q">
+      <div class="letter">Q</div>
+      <h3>QUEER</h3>
+      <p>Identidade guarda-chuva que questiona normas de gênero e sexualidade.</p>
+    </div>
+
+    <div class="sigla-card sc-i">
+      <div class="letter">I</div>
+      <h3>INTERSEXO</h3>
+      <p>Pessoa nascida com características biológicas que não se encaixam nos padrões binários.</p>
+    </div>
+
+    <div class="sigla-card sc-a">
+      <div class="letter">A</div>
+      <h3>ASSEXUAL</h3>
+      <p>Pessoa que experiencia pouca ou nenhuma atração sexual por outras pessoas.</p>
+    </div>
+
+    <div class="sigla-card sc-p">
+      <div class="letter">P</div>
+      <h3>PANSEXUAL</h3>
+      <p>Pessoa atraída por outras independentemente de gênero ou sexo.</p>
+    </div>
+
+    <div class="sigla-card sc-n">
+      <div class="letter">N</div>
+      <h3>NÃO-BINÁRIO</h3>
+      <p>Identidade que existe fora da divisão binária masculino/feminino.</p>
+    </div>
+
+    <div class="sigla-card sc-mais">
+      <div class="letter">+</div>
+      <h3>E MAIS</h3>
+      <p>A sigla continua crescendo para incluir todas as identidades e expressões.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══ 2. HISTÓRIA DAS TRAVESTIS — XICA MANICONGO ══ -->
+<section class="historia-section fade-up" id="travestis">
+  <div class="sec-label">ORIGENS · MEMÓRIA</div>
+  <div class="sec-title">A HISTÓRIA<br>DAS TRAVESTIS</div>
+
+  <div class="xica-block">
+    <div class="xica-tag">Século XVI · Salvador, Bahia</div>
+    <h2>XICA<br><em>MANICONGO</em></h2>
+    <div class="timeline-dot">Primeira travesti não-indígena do Brasil</div>
+    <p>
+      Sequestrada do Congo e trazida escravizada para Salvador no século XVI, Xica Manicongo — registrada como Francisco — resistiu desde o primeiro momento ao nome e às roupas masculinas que lhe foram impostos pelo colonizador. Pertencente à categoria das <em>quimbandas</em> de seu povo, sua expressão de gênero era lida pelo colonizador como feminina.
+    </p>
+    <div class="xica-quote">
+      "Xica recusava-se a utilizar o nome masculino que lhe foi imposto, ao mesmo tempo em que seguia vestida em seus trajes femininos, tal qual em África."
+    </div>
+    <p>
+      Trabalhadora como sapateira na capital baiana, foi denunciada à Inquisição por "andar trajada como mulher" e acusada de sodomia. Condenada pelo Tribunal do Santo Ofício a ser queimada viva em praça pública, Xica precisou abdicar de seus trajes para sobreviver — apagando a si mesma para existir.
+    </p>
+    <p style="margin-top:1rem;font-size:.82rem;color:#888;">
+      Sua história foi redescoberta pelo antropólogo Luiz Mott nos arquivos da Torre do Tombo em Lisboa. Só na década de 2000 a ativista Majorie Marchi, então presidente da Astra-Rio, nomeou Xica como travesti — devolvendo-lhe a identidade que a Inquisição tentou apagar. Hoje é símbolo de resistência para toda a comunidade LGBTQIAPN+.
+    </p>
+  </div>
+</section>
+
+<!-- ══ 3. LUANA MUNIZ ══ -->
+<section class="luana-section fade-up">
+  <div class="sec-label">RELATO · MEMÓRIA VIVA</div>
+  <div class="sec-title">LUANA<br>MUNIZ</div>
+  <div class="luana-grid">
+    <div class="video-wrap">
+      <video autoplay muted loop playsinline style="background:#111;">
+        <source src="Luana.mp4" type="video/mp4">
+      </video>
+      <div class="video-caption">
+        <h3>LUANA MUNIZ</h3>
+        <div class="poem">
+          travesti.<br>
+          vesti a si.<br>
+          transcreve<br>
+          enrendo<br>
+          remendando<br>
+          …
+        </div>
+      </div>
+    </div>
+    <div class="luana-bio">
+      <div class="luana-years">1958 — 2017</div>
+      <p>
+        Conhecida como a Rainha da Lapa, Luana Muniz foi ativista travesti e artista de cabaré no Rio de Janeiro. Em 2002 fundou a Associação dos Profissionais do Sexo Travesti e Transexual do Rio de Janeiro, lutando pelos direitos das trabalhadoras sexuais.
+      </p>
+      <p style="margin-top:1rem;">
+        Criou uma pensão na Lapa para dar às travestis trabalhadoras do sexo um lugar mais seguro para viver. Sua generosidade, coragem e alegria fizeram dela um símbolo permanente de resistência e afeto na memória travesti brasileira.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ══ 4. TRANSPOLITIZARTES ══ -->
+<section class="trans-section fade-up" id="transpol">
+  <div style="padding-right:1.5rem;">
+    <div class="sec-label">POLÍTICA · ARTE · RESISTÊNCIA</div>
+    <div class="sec-title">TRANSPOLITI<br>ZARTES</div>
+  </div>
+  <div class="trans-track">
+
+    <!-- Kátia Tapety -->
+    <div class="trans-card tc-katia">
+      <div class="trans-card-top">
+        <div class="initial">KT</div>
+        <span class="trans-card-area area-pol">Política</span>
+      </div>
+      <div class="trans-card-body">
+        <h3>KÁTIA TAPETY</h3>
+        <div class="role">Vereadora · Vice-Prefeita · Piauí</div>
+        <p>Nascida em 1949, em Colônia do Piauí, Kátia é a primeira travesti eleita a cargo público no Brasil. Eleita vereadora em 1992 — sempre a mais votada —, foi presidenta da Câmara e vice-prefeita em 2004. Uma "traviarca" que abriu caminhos para todas.</p>
+      </div>
+    </div>
+
+    <!-- Erika Hilton -->
+    <div class="trans-card tc-erika">
+      <div class="trans-card-top">
+        <div class="initial">EH</div>
+        <span class="trans-card-area area-pol">Política</span>
+      </div>
+      <div class="trans-card-body">
+        <h3>ERIKA HILTON</h3>
+        <div class="role">Deputada Federal · PSOL-SP</div>
+        <p>Mulher trans, preta e periférica, eleita em 2022 como uma das primeiras deputadas federais trans do Brasil. Defensora da comunidade LGBTQIAPN+ no Congresso, foi eleita prefeita de São Paulo em 2024 — a primeira mulher trans a governar uma grande capital brasileira.</p>
+      </div>
+    </div>
+
+    <!-- Liniker -->
+    <div class="trans-card tc-liniker">
+      <div class="trans-card-top">
+        <div class="initial">LI</div>
+        <span class="trans-card-area area-art">Arte</span>
+      </div>
+      <div class="trans-card-body">
+        <h3>LINIKER</h3>
+        <div class="role">Cantora · Compositora · São Paulo</div>
+        <p>Travesti preta, cantora e compositora que mistura soul, MPB e funk em uma voz única. Seu trabalho é uma declaração de amor à existência trans. Indicada ao Grammy Latino, é referência de beleza, arte e resistência para toda uma geração.</p>
+      </div>
+    </div>
+
+    <!-- Majur -->
+    <div class="trans-card tc-majur">
+      <div class="trans-card-top">
+        <div class="initial">MJ</div>
+        <span class="trans-card-area area-art">Arte</span>
+      </div>
+      <div class="trans-card-body">
+        <h3>MAJUR</h3>
+        <div class="role">Cantora · Compositora · Bahia</div>
+        <p>Majur é uma artista trans e negra da Bahia que une música afropop, R&B e espiritualidade em sua obra. Sua presença de palco e sua voz encantam e politizam ao mesmo tempo, celebrando a identidade trans negra com orgulho e beleza.</p>
+      </div>
+    </div>
+
+    <!-- Urias -->
+    <div class="trans-card tc-urias">
+      <div class="trans-card-top">
+        <div class="initial">UR</div>
+        <span class="trans-card-area area-art">Arte</span>
+      </div>
+      <div class="trans-card-body">
+        <h3>URIAS</h3>
+        <div class="role">Cantora · Compositora</div>
+        <p>Com uma voz poderosa e uma estética sombria e única, Urias é uma das vozes trans mais marcantes do pop brasileiro. Prêmio Transbaile de "Artista do Ano", ela constrói uma obra que celebra a identidade trans com força e originalidade.</p>
+      </div>
+    </div>
+
+    <!-- Duda Salabert -->
+    <div class="trans-card tc-duda">
+      <div class="trans-card-top">
+        <div class="initial">DS</div>
+        <span class="trans-card-area area-pol">Política</span>
+      </div>
+      <div class="trans-card-body">
+        <h3>DUDA SALABERT</h3>
+        <div class="role">Senadora · PDT-MG</div>
+        <p>Eleita deputada federal por Minas Gerais em 2022 ao lado de Erika Hilton, Duda foi uma das primeiras mulheres trans no Congresso Nacional. Professora, ativista e parlamentar, é voz firme na defesa dos direitos trans e da democracia brasileira.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══ 5. BAIXADA SANTISTA — TILA RIOS & RENATA CARVALHO ══ -->
+<section class="bs-section fade-up" id="baixada">
+  <div class="sec-label">BAIXADA SANTISTA · TERRITÓRIO</div>
+  <div class="sec-title">TRAVESTIS<br>DO LITORAL</div>
+  <div class="bs-intro">
+    <p>Duas mulheres incríveis que constroem história, arte e resistência no litoral paulista. Suas trajetórias moldam a identidade travesti da Baixada Santista.</p>
+  </div>
+
+  <div class="bs-grid">
+
+    <!-- Tila Rios — coluna tall -->
+    <div class="bs-item tall" style="background:linear-gradient(160deg,#1a0a30,#0a0020);">
+      <div class="bs-text" style="height:100%;display:flex;flex-direction:column;justify-content:flex-end;">
+        <div class="bs-name">TILA<br>RIOS</div>
+        <div class="bs-role">Ativista · Artista · Santos</div>
+        <p>Tila Rios é uma travesti e ativista da Baixada Santista, figura de referência na luta pelos direitos de travestis e transexuais da região. Sua trajetória une militância, arte e visibilidade, contribuindo para a construção de uma memória trans local e para a conquista de políticas públicas na região.</p>
+      </div>
+    </div>
+
+    <!-- Acento colorido -->
+    <div class="bs-item bs-accent">
+      <h3>EXISTIR<br>É<br>RESISTIR</h3>
+    </div>
+
+    <!-- Quote Tila -->
+    <div class="bs-item bs-quote">
+      "A Baixada Santista tem história travesti. Nós existimos, lutamos e construímos esse território."
+    </div>
+
+    <!-- Renata — wide -->
+    <div class="bs-item wide" style="background:linear-gradient(135deg,#10001a,#001018);">
+      <div class="bs-text">
+        <div class="bs-name">RENATA CARVALHO</div>
+        <div class="bs-role">Atriz · Dramaturga · Diretora · Transpóloga · Santos, 1981</div>
+        <p>Nascida em Santos em 1981, Renata é atriz, dramaturga, diretora e ativista pela representatividade trans no teatro. Iniciou seu percurso teatral no Teatro Municipal de Santos aos 15 anos. Em 2002 fundou a Cia. Ohm de Teatro.</p>
+        <p style="margin-top:.8rem;">Em 2012 criou o monólogo <em>Dentro de Mim Mora Outra</em>, onde expõe sua história de vida travesti com coragem e poesia. Idealizou o Coletivo T, grupo de artistas trans que luta pela representatividade nas artes. Cunhou o título de <strong style="color:var(--pink);">transpóloga</strong> — pesquisadora de antropologia dos corpos trans — e é referência nacional no teatro e na militância LGBTQIAPN+.</p>
+        <p style="margin-top:.8rem;font-size:.8rem;color:#888;">Peça de destaque: <em>O Evangelho Segundo Jesus, Rainha do Céu</em> — onde protagoniza Jesus Cristo como uma travesti, gerando debates fundamentais sobre fé, gênero e existência.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══ 6. DOCUMENTÁRIOS & PEÇAS ══ -->
+<section class="docs-section fade-up" id="docs">
+  <div class="sec-label">CULTURA · AUDIOVISUAL</div>
+  <div class="sec-title">DOCUMEN<br>TÁRIOS &<br>TEATRO</div>
+
+  <a href="#" class="doc-item">
+    <span class="doc-num">01</span>
+    <div class="doc-info">
+      <span class="doc-badge badge-doc">Documentário</span>
+      <h3>KÁTIA</h3>
+      <p>Karla Holanda, 2012. A trajetória política e humana da primeira travesti eleita no Brasil.</p>
+    </div>
+  </a>
+
+  <a href="#" class="doc-item">
+    <span class="doc-num">02</span>
+    <div class="doc-info">
+      <span class="doc-badge badge-doc">Documentário</span>
+      <h3>BIXA TRAVESTY</h3>
+      <p>Claudia Priscilla & Kiko Goifman, 2018. Linn da Quebrada e Jup do Bairro em uma obra sobre arte, corpo e resistência trans.</p>
+    </div>
+  </a>
+
+  <a href="#" class="doc-item">
+    <span class="doc-num">03</span>
+    <div class="doc-info">
+      <span class="doc-badge badge-tea">Teatro</span>
+      <h3>DENTRO DE MIM MORA OUTRA</h3>
+      <p>Renata Carvalho, 2012. Monólogo que expõe a história de vida de uma travesti — dores, transformação e libertação.</p>
+    </div>
+  </a>
+
+  <a href="#" class="doc-item">
+    <span class="doc-num">04</span>
+    <div class="doc-info">
+      <span class="doc-badge badge-tea">Teatro</span>
+      <h3>O EVANGELHO SEGUNDO JESUS, RAINHA DO CÉU</h3>
+      <p>Jo Clifford / Renata Carvalho. Jesus Cristo como uma travesti — fé, gênero e existência em cena.</p>
+    </div>
+  </a>
+
+  <a href="#" class="doc-item">
+    <span class="doc-num">05</span>
+    <div class="doc-info">
+      <span class="doc-badge badge-doc">Documentário</span>
+      <h3>LUANA — RAINHA DA LAPA</h3>
+      <p>A história de Luana Muniz, ativista e performer, símbolo de amor e resistência travesti no Rio de Janeiro.</p>
+    </div>
+  </a>
+
+  <a href="#" class="doc-item">
+    <span class="doc-num">06</span>
+    <div class="doc-info">
+      <span class="doc-badge badge-doc">Documentário</span>
+      <h3>XICA MANICONGO — A HQ</h3>
+      <p>A história da primeira travesti do Brasil em quadrinhos — resgate histórico e memória trans negra.</p>
+    </div>
+  </a>
+
+</section>
+
+<!-- ══ 7. CRIADORES ══ -->
+<section class="criadores-section fade-up" id="criadores">
+  <div class="sec-label">SOBRE O PROJETO</div>
+  <div class="sec-title">CRIA<br>DORES</div>
+
+  <div class="creator-pill">
+    <div class="creator-avatar">A</div>
+    <div>
+      <h3>Nome Criador</h3>
+      <p>Trajetória, pesquisa, arte e construção do projeto TRANSVERSAR.</p>
+    </div>
+  </div>
+
+  <div class="creator-pill">
+    <div class="creator-avatar" style="background:linear-gradient(135deg,var(--pink),var(--white));color:#000;">B</div>
+    <div>
+      <h3>Nome Criador</h3>
+      <p>Identidade visual, produção cultural e desenvolvimento do projeto.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FOOTER ══ -->
+<footer>
+  <div class="footer-logo">TRANSVERSAR</div>
+  <p class="footer-desc">Memória, arte, visibilidade e resistência LGBTQIAPN+.<br>Baixada Santista · Brasil</p>
+  <div class="footer-grid">
+    <div class="footer-col">
+      <h4>Navegação</h4>
+      <a href="#lgbtqiapn">LGBTQIAPN+</a>
+      <a href="#travestis">Travestis</a>
+      <a href="#transpol">Transpolitizartes</a>
+      <a href="#baixada">Baixada Santista</a>
+      <a href="#docs">Documentários</a>
+      <a href="#criadores">Criadores</a>
+    </div>
+    <div class="footer-col">
+      <h4>Redes</h4>
+      <a href="#">Instagram</a>
+      <a href="#">YouTube</a>
+      <a href="#">TikTok</a>
+      <h4 style="margin-top:1.5rem;">Contato</h4>
+      <p>contato@transversar.com</p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 TRANSVERSAR</p>
+    <div class="footer-trans-flag">
+      <div class="flag-stripe" style="background:var(--blue);"></div>
+      <div class="flag-stripe" style="background:var(--pink);"></div>
+      <div class="flag-stripe" style="background:var(--white);"></div>
+      <div class="flag-stripe" style="background:var(--pink);"></div>
+      <div class="flag-stripe" style="background:var(--blue);"></div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Menu
+  const btn = document.getElementById('menuBtn');
+  const overlay = document.getElementById('navOverlay');
+  btn.addEventListener('click', () => {
+    btn.classList.toggle('open');
+    overlay.classList.toggle('open');
+    document.body.style.overflow = overlay.classList.contains('open') ? 'hidden' : '';
+  });
+  function closeMenu() {
+    btn.classList.remove('open');
+    overlay.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  // Fade in
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('visible'); obs.unobserve(e.target); }});
+  }, {threshold: 0.08});
+  document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
+HTMLEOF
+echo "Done"
