@@ -12,7 +12,7 @@
 
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Libre+Baskerville&display=swap" rel="stylesheet">
     <style>
         :root {
             --preto: #0d0d0d;
@@ -554,7 +554,7 @@
                     <div class="flip-card-inner">
 
                         <div class="flip-card-front">
-                            <img src="dudasalaber.png" alt="imagem de uma mulher">
+                            <img src="dudasalabert.png" alt="imagem de uma mulher">
                             <h5>Duda Salabert</h5>
                         </div>
 
@@ -1054,28 +1054,104 @@ A memória é uma ferramenta política!🏳️‍🌈🏳‍⚧
 
 </style>
 
-<<section style="text-align:center; padding:40px;">
+<section style="padding:80px 20px; background:#0e0b16; color:white;">
 
-    <h2>Arquivo do Acervo</h2>
+    <div style="max-width:900px; margin:0 auto;">
 
-    <a href="lampi.pdf" target="_blank"
-       style="
-       background:linear-gradient(45deg,#ff4fd8,#7a2cff);
-       padding:12px 18px;
-       color:white;
-       border-radius:30px;
-       text-decoration:none;
-       ">
-        Abrir PDF
-    </a>
+        <!-- TÍTULO ESTILO JORNAL -->
+        <h2 style="
+            font-family:'Playfair Display', serif;
+            font-size:2.5rem;
+            text-align:center;
+            color:#ff4fd8;
+            margin-bottom:10px;
+        ">
+            Arquivo Jornalístico
+        </h2>
+
+        <!-- SUBTÍTULO -->
+        <p style="
+            font-family:'Libre Baskerville', serif;
+            text-align:center;
+            color:#bbb;
+            margin-bottom:40px;
+        ">
+            Registro digitalizado de publicações e memórias impressas
+        </p>
+
+        <!-- CONTEÚDO TIPO MATÉRIA -->
+        <div style="
+            display:flex;
+            flex-direction:column;
+            gap:30px;
+            align-items:center;
+        ">
+
+            <!-- IMAGEM DO PDF (CAPA) -->
+            <a href="lambi.pdf" target="_blank"
+               style="display:block; width:100%; max-width:600px;">
+
+                <img src="Lamp.jpg" alt="Capa do jornal"
+                style="
+                    width:100%;
+                    border-radius:10px;
+                    box-shadow:0 15px 40px rgba(0,0,0,.5);
+                    transition:.3s;
+                "
+                onmouseover="this.style.transform='scale(1.02)'"
+                onmouseout="this.style.transform='scale(1)'">
+
+            </a>
+
+            <!-- TEXTO ESTILO JORNAL -->
+            <div style="
+                font-family:'Libre Baskerville', serif;
+                font-size:1rem;
+                line-height:1.8;
+                max-width:700px;
+                text-align:justify;
+                color:#ddd;
+            ">
+
+                <p>
+                    Este documento integra o acervo histórico digital,
+                    reunindo registros impressos que documentam memórias,
+                    lutas e expressões culturais.
+                </p>
+
+                <p>
+                    O material pode ser consultado diretamente nesta página
+                    ou aberto em formato completo para leitura detalhada.
+                </p>
+
+            </div>
+
+            <!-- BOTÃO -->
+            <a href="pdf/seu-arquivo.pdf" target="_blank"
+               style="
+                   padding:12px 20px;
+                   border-radius:30px;
+                   text-decoration:none;
+                   color:white;
+                   font-size:13px;
+
+                   background:linear-gradient(45deg,#ff4fd8,#7a2cff,#4dd6ff);
+                   background-size:200% 200%;
+               ">
+                Abrir jornal completo →
+            </a>
+
+        </div>
+
+    </div>
 
 </section>
 
 
     
-<section id="entrada-galeria" style="padding:80px 20px; background:#0e0b16; color:white; text-align:center;">
+<section id="entrada-galeria" style="padding:80px 20px; background:#C7D2D9; color:white; text-align:center;">
 
-    <h2 style="font-size:2.4rem; color:#ff4fd8; margin-bottom:10px;">
+    <h2 class="graffiti" style="font-size:2.4rem; color:#ff4fd8; margin-bottom:10px;">
         Galeria de Memórias
     </h2>
 
@@ -1102,6 +1178,14 @@ A memória é uma ferramenta política!🏳️‍🌈🏳‍⚧
 </section>
 
 <style>
+.graffiti{
+    font-family:'Bangers', cursive;
+    color:#ff4fd8;
+    text-shadow:
+        2px 2px 0 #7a2cff,
+        4px 4px 0 #4dd6ff;
+    letter-spacing:3px;
+}
 
 /* CARD DA GALERIA */
 
