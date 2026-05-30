@@ -1,123 +1,444 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TRANSVERSAR</title>
-<link rel="stylesheet" href="style.css">
-    <!-- Latest compiled and minified CSS -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
 
-<!-- Latest compiled JavaScript -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <title>Transpolitizartes</title>
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> 
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
 
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --preto: #0d0d0d;
+            --branco: #ffffff;
+            --cinza: #d9d9d9;
+        }
+.flip-card{
+    background: transparent;
+    height: 350px;
+    perspective: 1000px;
+}
+
+.flip-card-inner{
+    position: relative;
+    width: 100%;
+    height: 100%;
+
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+}
+
+.flip-card:hover .flip-card-inner{
+    transform: rotateY(180deg);
+}
+
+.flip-card-front,
+.flip-card-back{
+    position: absolute;
+
+    width: 100%;
+    height: 100%;
+
+    backface-visibility: hidden;
+
+    border-radius: 20px;
+    overflow: hidden;
+
+    box-shadow: 0 10px 25px rgba(0,0,0,.15);
+}
+
+.flip-card-front{
+    background: #fff;
+}
+
+.flip-card-front img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.flip-card-front h5{
+    position: absolute;
+    bottom: 15px;
+    left: 15px;
+
+    color: white;
+    font-weight: bold;
+}
+
+.flip-card-back{
+    background: #111;
+    color: white;
+
+    transform: rotateY(180deg);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    padding: 25px;
+    text-align: center;
+}
+
+.flip-card-inner.active{
+    transform: rotateY(180deg);
+}
+.carouselsec{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    background:url("Bc.png");
+    background-size:cover;
+    background-position:center;
+}
+#xica{
+    padding: 80px 0;
+    background-color: #D5D5D5D5;
+}
+
+#xica h2{
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+#xica p{
+    font-size: 1rem;
+    line-height: 1.7;
+    color: #444;
+}
+
+#xica img{
+    width: 100%;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+}
+
+#xica span{
+    color: #666;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+#demo{
+    max-width:500px;
+    margin:auto;
+}
+
+.carousel-item img{
+    width:80%;
+    border-radius:30px;
+    margin:auto;
+    box-shadow:0 15px 40px rgba(0,0,0,.3);
+}
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: var(--preto);
+            color: var(--branco);
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* NAVBAR */
+
+        .navbar {
+            background: rgba(0, 0, 0, 0.35);
+            backdrop-filter: blur(12px);
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .navbar-toggler {
+            border: none;
+        }
+
+        .navbar-toggler:focus {
+            box-shadow: none;
+        }
+
+        /* OFFCANVAS */
+
+        .offcanvas {
+            background: #111;
+        }
+
+        .offcanvas-title {
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .nav-link {
+            color: white;
+            font-size: 1.1rem;
+            padding: 1rem 0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .nav-link:hover {
+            color: #aaa;
+        }
+
+        /* HERO */
+
+        .hero {
+            min-height: 100vh;
+
+            background:
+                linear-gradient(
+                    rgba(0,0,0,.55),
+                    rgba(0,0,0,.55)
+                ),
+                url('Bgi.png');
+
+            background-size: cover;
+            background-position: center;
+
+            display: flex;
+            align-items: center;
+        }
+
+        .hero-content {
+            max-width: 700px;
+        }
+
+        .hero small {
+            letter-spacing: 4px;
+            text-transform: uppercase;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3rem, 8vw, 7rem);
+            line-height: .9;
+            margin: 1rem 0;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: var(--cinza);
+            max-width: 500px;
+        }
+
+        .btn-editorial {
+            margin-top: 2rem;
+            border: 1px solid white;
+            color: white;
+            padding: 12px 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border-radius: 0;
+            transition: .3s;
+        }
+
+        .btn-editorial:hover {
+            background: white;
+            color: black;
+        }
+
+        /* SEÇÕES */
+
+        section {
+            padding: 100px 0;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            margin-bottom: 2rem;
+        }
+    </style>
 </head>
-<body data-bs-spy="scroll" data-bs-target=".navbar" data-bs-offset="50">
 
+<body>
 
+    <!-- NAVBAR -->
 
+    <nav class="navbar navbar-dark fixed-top">
+        <div class="container">
 
+            <a class="navbar-brand" href="#">
+                TRANSPOLITIZARTES
+            </a>
 
+            <button class="navbar-toggler"
+                type="button"
+                data-bs-toggle="offcanvas"
+                data-bs-target="#menu">
 
-    <main class="container pt-5">
-<nav class="navbar navbar-expand-md bg-dark navbar-dark sticky-top">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#">
-    <img src=" " alt="" style="width:60px;" class="rounded-pill"></a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="collapsibleNavbar">
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link" href="#quemsou">ÍNICIO</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#teatro">LGBTQIAPN+</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#Linguagens">PRIMEIRA TRAVESTI</a>
-        </li>    
-         <li class="nav-item">
-          <a class="nav-link" href="#figurino">TRANSPOLITIZARTES</a>
-        </li>
-         <li class="nav-item">
-          <a class="nav-link" href="#hobbies">SOBRE</a>
-        </li>    
-        
-       
-      </ul>
+                <span class="navbar-toggler-icon"></span>
+
+            </button>
+
+        </div>
+    </nav>
+
+    <!-- MENU LATERAL -->
+
+    <div class="offcanvas offcanvas-end text-white"
+        tabindex="-1"
+        id="menu">
+
+        <div class="offcanvas-header">
+
+            <h5 class="offcanvas-title">
+                Menu
+            </h5>
+
+            <button type="button"
+                class="btn-close btn-close-white"
+                data-bs-dismiss="offcanvas">
+            </button>
+
+        </div>
+
+        <div class="offcanvas-body">
+
+            <ul class="navbar-nav">
+
+                <li>
+                    <a class="nav-link" href="#inicio">
+                        Início
+                    </a>
+                </li>
+
+                <li>
+                    <a class="nav-link" href="#xica">
+                        Primeira Travesti
+                    </a>
+                </li>
+
+                <li>
+                    <a class="nav-link" href="#transpolitizartes">
+                        Transpolitizartes
+                    </a>
+                </li>
+
+                <li>
+                    <a class="nav-link" href="#baixada">
+                        Travestis da Baixada
+                    </a>
+                </li>
+                
+            <li>
+    <a class="nav-link" href="#arquivo>Acervo Audiovisual"> Acervo Audiovisual</a> </li>
+                <li>
+                    <a class="nav-link" href="#lampiao">
+                        Jornal Lampião
+                    </a>
+                </li>
+
+                <li>
+                    <a class="nav-link" href="#galeria">
+                        Galeria
+                    </a>
+                </li>
+
+                <li>
+                    <a class="nav-link" href="#sobre">
+                        Sobre
+                    </a>
+                </li>
+
+            </ul>
+
+        </div>
+
     </div>
-  </div>
-</nav>
-        <section id="inicial" class="container  bg-dark text-white ">
-            <h1>MÊS DO ORGULHO</h1>
-            <p>a diversidade é o futuro.</p>
-            
-        </section>
-      
-        
-        <section id="bg_carro" class="container pt-5 my-2  text-white"justify-content-center >
-           <!--aqui ira a formação artistica-->
-            <div id="demo" class="carousel slide" data-bs-ride="carousel" justify-content-center>
+
+    <!-- HERO -->
+
+    <header class="hero" id="inicio">
+
+        <div class="container">
+
+            <div class="hero-content">
+
+                <small>
+                    Memória • Arte • Resistência
+                </small>
+
+                <h1>
+                    Travestilidades
+                </h1>
+
+                <p>
+                    Um espaço dedicado à memória,
+                    arte, cultura e resistência das
+                    travestis brasileiras.
+                </p>
+
+                <a href="#xica"
+                    class="btn btn-editorial">
+
+                    Explorar
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </header>
+     <section class="carouselsec">
+<!-- Carousel -->
+<div class="container">
+<div id="demo" class="carousel slide" data-bs-ride="carousel">
 
   <!-- Indicators/dots -->
-  <div class="carousel-indicators" justify-content-center>
+  <div class="carousel-indicators">
     <button type="button" data-bs-target="#demo" data-bs-slide-to="0" class="active"></button>
     <button type="button" data-bs-target="#demo" data-bs-slide-to="1"></button>
     <button type="button" data-bs-target="#demo" data-bs-slide-to="2"></button>
-    <button type="button" data-bs-target="#demo" data-bs-slide-to="3"></button>
-    <button type="button" data-bs-target="#demo" data-bs-slide-to="4"></button>
-    <button type="button" data-bs-target="#demo" data-bs-slide-to="5"></button>
-    <button type="button" data-bs-target="#demo" data-bs-slide-to="6"></button>
-    <button type="button" data-bs-target="#demo" data-bs-slide-to="7"></button>
-    <button type="button" data-bs-target="#demo" data-bs-slide-to="8"></button>
-    <button type="button" data-bs-target="#demo" data-bs-slide-to="9"></button>
+     <button type="button" data-bs-target="#demo" data-bs-slide-to="3"></button> <button type="button" data-bs-target="#demo" data-bs-slide-to="4"></button> <button type="button" data-bs-target="#demo" data-bs-slide-to="5"></button> <button type="button" data-bs-target="#demo" data-bs-slide-to="6"></button> <button type="button" data-bs-target="#demo" data-bs-slide-to="7"></button> <button type="button" data-bs-target="#demo" data-bs-slide-to="8"></button> <button type="button" data-bs-target="#demo" data-bs-slide-to="9"></button> 
   </div>
   
-
-
   <!-- The slideshow/carousel -->
-  <div class="carousel-inner" id="carrosel-itens" justify-content-center>
-    <div class="carousel-item active"justify-content-center>
-      <img src="siglas_l.png" alt="descrição da sigla L-Lesbica" class="d-block" >
-      
+  <div class="carousel-inner" id="classcarro">
+    <div class="carousel-item active">
+      <img src="L.png" alt="Los Angeles" class="d-block" style="width:80%">
     </div>
     <div class="carousel-item">
-      <img src="siglas_g.png" alt="descrição da sigla G-Gay" class="d-block" >
-    
-    </div>
-
-    <div class="carousel-item">
-      <img src="siglas_b.png" alt="descrição da sigla B-Bixessual" class="d-block" >
-    </div>
-
-    <div class="carousel-item">
-      <img src="siglas_t.png" alt="descrição da sigla T-Trans" class="d-block" >
-    </div>
-
-    <div class="carousel-item">
-      <img src="siglas_q.png" alt="descrição da sigla Q-Queer" class="d-block" >
-    </div>
-<div class="carousel-item">
-      <img src="siglas_i.png" alt="descrição da sigla I-Intersexo" class="d-block" >
+      <img src="G.png" alt="Chicago" class="d-block" style="width:80%">
     </div>
     <div class="carousel-item">
-      <img src="siglas_a.png" alt="descrição da sigla A-Assexual" class="d-block" >
-    </div>
-<div class="carousel-item">
-      <img src="siglas_p.png" alt="descrição da sigla P-Pansexual" class="d-block" >
+      <img src="B.png" alt="New York" class="d-block" style="width:80%">
     </div>
     <div class="carousel-item">
-      <img src="siglas_n.png" alt="descrição da sigla N-Não Binário" class="d-block" >
-    </div>
-    <div class="carousel-item">
-      <img src="siglas_+.png" alt="descrição da sigla +-Outras" class="d-block" >
+      <img src="T.png" alt="New York" class="d-block" style="width:80%">
+    </div><div class="carousel-item">
+      <img src="Q.png" alt="New York" class="d-block" style="width:80%">
+    </div><div class="carousel-item">
+      <img src="I.png" alt="New York" class="d-block" style="width:80%">
+    </div><div class="carousel-item">
+      <img src="A.png" alt="New York" class="d-block" style="width:80%">
+    </div><div class="carousel-item">
+      <img src="P.png" alt="New York" class="d-block" style="width:80%">
+    </div><div class="carousel-item">
+      <img src="N.png" alt="New York" class="d-block" style="width:80%">
+    </div><div class="carousel-item">
+      <img src="mais.png" alt="New York" class="d-block" style="width:80%">
     </div>
   </div>
   
+  <!-- Left and right controls/icons -->
   <button class="carousel-control-prev" type="button" data-bs-target="#demo" data-bs-slide="prev">
     <span class="carousel-control-prev-icon"></span>
   </button>
@@ -125,101 +446,1232 @@
     <span class="carousel-control-next-icon"></span>
   </button>
 </div>
+</div>
+    </section>
 
+<section id="xica" class="py-5">
 
+    <div class="container">
 
+        <div class="row align-items-center">
 
-        </section>
+            <div class="col-lg-5 mb-4">
+                <img src="Xica.png"
+                     alt="Representação artística de Xica Manicongo"
+                     class="img-fluid rounded-4 shadow">
+            </div>
 
+            <div class="col-lg-7">
 
+                <span class="text-uppercase text-secondary">
+                    Memória Travesti
+                </span>
 
+                <h2 class="display-4 fw-bold">
+                    Xica Manicongo
+                </h2>
 
+                <p class="lead">
+                    Considerada a primeira travesti documentada da história do Brasil.
+                </p>
 
+                <p>
+                    Xica Manicongo foi uma pessoa africana escravizada trazida para
+                    Salvador no século XVI. Registros da época mostram que ela vivia
+                    socialmente no feminino, desafiando as normas impostas pela
+                    sociedade colonial portuguesa.
+                </p>
 
+                <p>
+                    Perseguida pela Inquisição, Xica tornou-se um símbolo de
+                    resistência e da longa trajetória das travestis no Brasil.
+                    Sua história revela que pessoas trans e travestis sempre
+                    existiram, mesmo diante da violência e da tentativa de apagamento.
+                </p>
 
-        <section id="Linguagens" class="container py-5 my-2 bg-light" >
-            <h3>TRANSPOLITIZARTES</h3>
+            </div>
 
+        </div>
 
-
-<section class="container pt-5 my-2 bg-light">
-            <div class="flip-card">
-               <div class="flip-card-inner">
-                    <div class="flip-card-front">
-                    <img src="Liniker.png"width="300px">
-                    </div>
-                        <div class="flip-card-back" id="pinab"><h3 >LINIKER</h3> <p class="nomesarte">Natural de Araraquara (SP), Liniker é uma força da natureza na música preta brasileira. Ela estourou em 2015 com o projeto Liniker e os Caramelows e o EP Cru, arrebatando o público com sua voz black, moldada pelo soul e pelo R&B. Em sua carreira solo, consolidou-se como uma das maiores compositoras de sua geração.</p>
-                         </div>
-                    </div>
-                </div>
-                
-
-            <div class="flip-card">
-                <div class="flip-card-inner">
-                <div class="flip-card-front">
-                    <img src="Urias.png" width="270px">
-                    </div>
-                        <div class="flip-card-back" id="bobwilson">
-                           <h3>URIAS<br>(1941-2025)</h3><p class="nomesarte">Nascida em Uberlândia (MG), Urias começou sua trajetória na moda e na direção criativa antes de canalizar sua visão estética afiada para a música. O impacto veio com o single Diaba (2019), um manifesto sonoro e visual focado em peitar o preconceito com arte, alta costura e batidas eletrônicas pesadas.</p>
-                    </div>
-                </div>
-            </div>    
-            <div class="flip-card">
-                <div class="flip-card-inner">
-                <div class="flip-card-front">
-                    <img src="MAJUR1816-2.jpg"width="300px">
-                   
-                    </div>
-                        <div class="flip-card-back" id="marina">
-                            <h3>MAJUR</h3> <br><p class="nomesarte">Vinda de Salvador (BA), Majur traz em seu canto o calor, o axé e a complexidade da música soteropolitana. Ela chamou a atenção do país em 2019 ao dividir os vocais com Elza Soares e Emicida no hino AmarElo. Dona de uma extensão vocal impressionante e de um timbre único, sua música mistura a MPB clássica, o pop e as matrizes africanas.</p>
-                    </div>
-                </div>
-            </div>    
-        </section>
-       
-
-      
-        
-        <!--py usa para criar as margens emcima  embaixo, pt só para parte de cima, e my- ,margem de baixo entre as sections -->
-
-
-<section id="hobbies" class="container-fluid  py-5 mt-5  text-white bg-dark">
-      <h3>TRANSVISÍVEL</h3>
-     <div class="container ">
-  
-       <div class="list-group"><!--a target é o alvo para onde quero lançar, blank joga para outra aba e prende o usuario no seu site-->
-        <a href="https://youtu.be/2L_-23lOOOI?feature=shared" target="_blank" class="list-group-item list-group-item-action">Põe a cara no sol-DOCUMENTÁRIO</a>
-        <a href="https://youtu.be/OOAn3jZnsrg?si=OeOZaxlSYOc0ZwLi " target="_blank" class="list-group-item list-group-item-action">Documento sem Nome- DOCUMENTÁRIO </a>
-        <a href="https://youtu.be/1ggPFh3PC1k?si=IAKl0JIJ_27dDCV3 " targe="_blank" class="list-group-item list-group-item-action">BRTRANS- PEÇA TEATRAL</a>
-      </div>
     </div>
-            <!--aqui irá os hobbies-->
+
 </section>
 
+<section id="transpolitizartes" class="py-5">
 
+    <div class="container">
 
-    </main>
-    <footer></footer>
+        <h2 class="text-center mb-5">
+            Transpolitizartes
+        </h2>
 
+        <div class="row g-4 justify-content-center">
 
-    <script>
-        $('.flip-card').on('click', function(){  
-             $(this).find('.flip-card-inner').toggleClass('flipped');
-        });
+            <!-- CARD 1 -->
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="flip-card">
+                    <div class="flip-card-inner">
 
-    </script>
+                        <div class="flip-card-front">
+                            <img src="Katia.jpg" alt="">
+                            <h5>Katia Tapety</h5>
+                        </div>
 
+                        <div class="flip-card-back">
+                            <h5>Katia Tapety</h5>
+                            <p>
+                                Política e liderança comunitária do Piauí, reconhecida como a primeira travesti eleita para um cargo público no Brasil. Tornou-se uma referência histórica na luta por representatividade política.
+                            </p>
+                        </div>
 
+                    </div>
+                </div>
+            </div>
 
-    <div vw class="enabled">
-    <div vw-access-button class="active"></div>
-    <div vw-plugin-wrapper>
-      <div class="vw-plugin-top-wrapper"></div>
+            <!-- CARD 2 -->
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+
+                        <div class="flip-card-front">
+                            <img src="rogeria.jpg" alt="">
+                            <h5>Rogéria</h5>
+                        </div>
+
+                        <div class="flip-card-back">
+                            <h5>Rogéria</h5>
+                            <p>
+                                Atriz, cantora e transformista considerada uma das artistas LGBTQIA+ mais importantes da história do Brasil. Ficou conhecida como a “Travesti da Família Brasileira” por sua popularidade e carisma.
+                            </p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- CARD 3 -->
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+
+                        <div class="flip-card-front">
+                            <img src="duda-salabert.jpg" alt="">
+                            <h5>Duda Salabert</h5>
+                        </div>
+
+                        <div class="flip-card-back">
+                            <h5>Duda Salambert</h5>
+                            <p>
+                            Professora, ambientalista e política brasileira. Foi uma das primeiras mulheres trans eleitas para cargos legislativos de destaque no país e atua em pautas de educação, direitos humanos e meio ambiente.
+                            </p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- CARD 4 -->
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+
+                        <div class="flip-card-front">
+                            <img src="Roberta.jpg" alt="">
+                            <h5>Roberta Close</h5>
+                        </div>
+
+                        <div class="flip-card-back">
+                            <h5>Roberta Close</h5>
+                            <p>
+                            Modelo e atriz que alcançou grande notoriedade nos anos 1980, tornando-se um símbolo de visibilidade para pessoas trans no Brasil e uma das figuras mais conhecidas da moda nacional.
+                            </p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- CARD 5 -->
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+
+                        <div class="flip-card-front">
+                            <img src="Erika.png" alt="">
+                            <h5>Erika Hilton</h5>
+                        </div>
+
+                        <div class="flip-card-back">
+                            <h5>Erika Hilton</h5>
+                            <p>
+                            Política, ativista e escritora brasileira. Tornou-se uma das primeiras mulheres trans e travestis eleitas para a Câmara dos Deputados, sendo amplamente reconhecida como uma das principais lideranças travestis da política nacional. Atua em defesa dos direitos humanos, da população LGBTQIA+ e da justiça social.
+                            </p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
     </div>
-  </div>
-  <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
-  <script>
-    new window.VLibras.Widget('https://vlibras.gov.br/app');
-  </script>
+
+</section>
+
+<style>
+
+#transpolitizartes{
+    background:#f8f8f8;
+}
+
+.flip-card{
+    height:350px;
+    perspective:1000px;
+    cursor:pointer;
+}
+
+.flip-card-inner{
+    position:relative;
+    width:100%;
+    height:100%;
+
+    transition:transform .8s;
+    transform-style:preserve-3d;
+}
+
+
+
+.flip-card-inner.active{
+    transform:rotateY(180deg);
+}
+
+.flip-card-front,
+.flip-card-back{
+    position:absolute;
+
+    width:100%;
+    height:100%;
+
+    border-radius:20px;
+    overflow:hidden;
+
+    backface-visibility:hidden;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.15);
+}
+
+.flip-card-front{
+    background:#fff;
+}
+
+.flip-card-front img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+.flip-card-front h5{
+    position:absolute;
+
+    bottom:15px;
+    left:15px;
+
+    color:white;
+    font-weight:bold;
+
+    text-shadow:0 2px 10px rgba(0,0,0,.8);
+}
+
+.flip-card-back{
+    background:#111;
+    color:white;
+
+    transform:rotateY(180deg);
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+
+    padding:25px;
+    text-align:center;
+}
+
+</style>
+
+<script>
+
+document.querySelectorAll('.flip-card').forEach(card => {
+
+    card.addEventListener('click', () => {
+
+        card.querySelector('.flip-card-inner')
+            .classList.toggle('active');
+
+    });
+
+});
+
+</script>
+
+
+<section id="travestis-baixada">
+
+    <div class="container">
+
+        <h2 class="titulo-secao">
+            TRAVESTIS DA BAIXADA
+        </h2>
+
+        <p class="subtitulo">
+            Memórias, trajetórias e resistências que transformaram a Baixada Santista.
+        </p>
+
+        <div class="baixada-grid">
+
+            <!-- Tila Rios -->
+            <div class="card-travesti">
+
+                <img src="Tila.jpg" alt="Tila Rios">
+
+                <div class="conteudo">
+
+                    <h3>TILA RIOS</h3>
+
+                    <span>Ativista · Artista · São Vicente</span>
+
+                   <p>
+                    Artista, produtora cultural, ativista e importante referência da cena LGBTQIAPN+ do litoral paulista. Conhecida também como Drag Ibiza, foi proprietária da marca e espaço Ibiza Mix Club, que se tornou um ponto de acolhimento, visibilidade e valorização de artistas LGBTQIAPN+ da região. Ao longo de sua trajetória, ajudou a fortalecer a cena cultural local, abrindo espaço para performances, concursos, shows e projetos voltados à comunidade. O Ibiza Mix Club ficou marcado como um espaço seguro e de celebração da diversidade.
+                </p>
+
+                </div>
+
+            </div>
+
+            <!-- Card destaque -->
+
+            <div class="card-destaque">
+
+                <h3>
+                    EXISTIR<br>
+                    É<br>
+                    RESISTIR
+                </h3>
+
+               
+
+            </div>
+
+            <!-- Renata Carvalho -->
+
+            <div class="card-travesti">
+
+                <img src="Antigona.jpg" alt="Renata Carvalho">
+
+                <div class="conteudo">
+
+                    <h3>RENATA CARVALHO</h3>
+
+                    <span>Atriz · Dramaturga · Transpóloga</span>
+
+                    <p>
+                        Atriz, dramaturga, diretora teatral e ativista travesti brasileira. Fundadora do Movimento Nacional de Artistas Trans (MONART), tornou-se uma das principais vozes pela representatividade trans nas artes, criando obras como Manifesto Transpofágico e denunciando a prática do “transfake”, quando pessoas cis interpretam personagens trans. <blockquote>
+“Meu corpo travesti é sujeito da minha própria história.” — Renata Carvalho </blockquote>
+<blockquote>
+    Entre suas principais obras estão Manifesto Transpofágico, Dentro de Mim Mora Outra, Domínio Público e O Evangelho Segundo Jesus, Rainha do Céu, trabalhos que transformaram o teatro em espaço de denúncia, memória e resistência. 
+    
+    <div class="video-link">
+    <h4>MANIFESTO TRANSPOFAGICO </h4>
+    <p>
+        Registro da Peça. Conteúdo sensível
+        
+        
+<a href="https://youtu.be/4Yy7sO4ofW0?si=TmndEPF7L7jXkY9k"
+       target="_blank"
+       class="btn btn-outline-dark">
+        Assistir ao vídeo
+    </a>
+</div>
+
+
+
+                </div>
+
+            </div>
+ </div>
+    </div>
+
+</section>
+
+<style>
+
+#travestis-baixada{
+    padding:80px 0;
+    background:#111;
+    color:white;
+}
+
+.titulo-secao{
+    text-align:center;
+    font-size:3rem;
+    font-weight:800;
+    margin-bottom:10px;
+}
+
+.subtitulo{
+    text-align:center;
+    max-width:700px;
+    margin:0 auto 50px;
+    opacity:.8;
+}
+
+.baixada-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:25px;
+}
+
+.card-travesti{
+    background:#1b1b1b;
+    border-radius:20px;
+    overflow:hidden;
+    transition:.3s;
+}
+
+.card-travesti:hover{
+    transform:translateY(-8px);
+}
+
+.card-travesti img{
+    width:100%;
+    height:320px;
+    object-fit:cover;
+}
+
+.conteudo{
+    padding:25px;
+}
+
+.conteudo h3{
+    font-size:2rem;
+    margin-bottom:5px;
+}
+
+.conteudo span{
+    display:block;
+    margin-bottom:15px;
+    color:#c7c7c7;
+}
+
+.conteudo p{
+    line-height:1.7;
+}
+
+.card-destaque{
+    background-image: url('Renata.png');
+    background-size: cover;
+
+    );
+
+    border-radius:20px;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+
+    text-align:center;
+
+    padding:30px;
+}
+
+.card-destaque h3{
+    font-size:3rem;
+    font-weight:900;
+    line-height:1;
+    margin-bottom:20px;
+}
+
+.card-destaque p{
+    font-size:1rem;
+    max-width:250px;
+}
+
+</style>
+<section id="acervo">
+
+    <div class="container">
+
+        <div class="titulo-acervo">
+            <span>MEMÓRIA AUDIOVISUAL</span>
+            <h2>ACERVO DE VÍDEOS</h2>
+            <p>
+                Documentários, entrevistas, espetáculos e registros
+                que ajudam a preservar a memória das travestis e
+                pessoas trans brasileiras.
+            </p>
+        </div>
+
+        <div class="row g-4">
+
+            <!-- CARD -->
+            <div class="col-md-6 col-lg-4">
+                <a href="https://youtu.be/2L_-23lOOOI?feature=shared" target="_blank" class="video-card">
+
+                    <div class="video-thumb">
+                    <<img src="Poeacara.jpg" alt="imagem de um por do sol e tem escrito Põe a Cara no Sol" width="100%">
+                    </div>
+
+                    <div class="video-info">
+                        <h3>Põe a Cara no Sol-Memória LGBT em SãoVicente</h3>
+                        <p>
+                    É um documentário e livro-memória com depoimentos de pessoas LGBT+ de São Vicente, narrando histórias individuais que se entrecruzam com a do território. Compilar, organizar e registrar essas memórias é valorar a nossa identidade enquanto LGBTs.
+A memória é uma ferramenta política!🏳️‍🌈🏳‍⚧
+                        </p>
+                    </div>
+
+                </a>
+            </div>
+
+            <!-- CARD -->
+            <div class="col-md-6 col-lg-4">
+                <a href="https://youtu.be/OOAn3jZnsrg?si=KpmgbNpaR5Li1HvV" target="_blank" class="video-card">
+
+                    <div class="video-thumb">
+<img src="Semnome.jpg" alt="Imagem de um grafitte que trm representada a Luana Muniz com seu bordão"TRAVESTI NÃO É BAGUNÇA" " width="100%">
+                    </div>
+
+                    <div class="video-info">
+                        <h3>Documentário </h3>
+                        <p>
+                            O documentário "Documento Sem Nome" nasceu como um projeto acadêmico e evoluiu para uma obra de grande impacto social. Inspirado nas vivências das mulheres trans e travestis acolhidas pelo Casarão de Luana Muniz, na Lapa, o filme revela a importância desse espaço como um refúgio de acolhimento, pertencimento e resistência.
+                        </p>
+                    </div>
+
+                </a>
+            </div>
+
+            <!-- CARD -->
+            <div class="col-md-6 col-lg-4">
+                <a href="https://youtu.be/1ggPFh3PC1k?si=FU8j-h0GkARVydeP" target="_blank" class="video-card">
+
+                    <div class="video-thumb">
+                    <img src="br-trans.jpg" alt="Silvero esta agachado com um baúe" width="100%">
+                    </div>
+
+                    <div class="video-info">
+                        <h3>Peça Teatral</h3>
+                        <p>
+                            Um processo cênico antropológico-autofágico traz à cena histórias sobre medo, solidão e morte. Histórias que se encontram e se confundem entre si e com a vida e as inquietações do ator. Recortes de vidas e vidas recortadas a partir de pesquisas e conversas pelas ruas e casas de show. BR-TRANS é um trânsito de informações e de fatos reais. Uma BR construída a partir da convergência e dos deslocamentos entre os polos Nordeste e Sul do país.
+                        </p>
+                    </div>
+
+                </a>
+            </div>
+
+            <!-- Repita quantos quiser -->
+
+        </div>
+
+    </div>
+
+</section>
+
+<style>
+
+#acervo{
+    padding:100px 0;
+    background:#111;
+    color:white;
+}
+
+.titulo-acervo{
+    text-align:center;
+    margin-bottom:50px;
+}
+
+.titulo-acervo span{
+    letter-spacing:3px;
+    font-size:.8rem;
+    color:#999;
+}
+
+.titulo-acervo h2{
+    font-size:3rem;
+    margin:15px 0;
+}
+
+.titulo-acervo p{
+    max-width:700px;
+    margin:auto;
+    color:#bbb;
+}
+
+.video-card{
+    display:block;
+
+    background:#f59292;
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+    text-decoration:none;
+
+    color:white;
+
+    transition:.3s;
+}
+
+.video-card:hover{
+    transform:translateY(-8px);
+    color:white;
+}
+
+.video-thumb{
+    height:180px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-size:4rem;
+
+    background:linear-gradient(
+        135deg,
+        #ff006e,
+        #8338ec
+    );
+}
+
+.video-info{
+    padding:25px;
+}
+
+.video-info h3{
+    font-size:1.3rem;
+    margin-bottom:10px;
+}
+
+.video-info p{
+    color:#ccc;
+}
+
+</style>
+
+<section id="jornal-historico">
+
+    <div class="container">
+
+        <div class="titulo-area">
+
+            <span>MEMÓRIA E DOCUMENTAÇÃO</span>
+
+            <h2>Travestis Sempre Existiram</h2>
+
+            <p>
+                Os jornais históricos ajudam a compreender que a presença
+                de travestis e pessoas trans não é recente. Ao longo das
+                décadas, suas histórias foram registradas na imprensa,
+                revelando vivências, resistências e formas de existência
+                que atravessam gerações.
+            </p>
+
+        </div>
+
+        <div class="pdf-container">
+
+            <iframe
+                src="lampi.pdf"
+                title="Jornal Histórico"
+                loading="lazy">
+            </iframe>
+
+        </div>
+
+    </div>
+</section>
+
+<style>
+
+#jornal-historico{
+    padding:80px 0;
+    background-image: url('Lamp.jpg');
+}
+
+.titulo-area{
+    text-align:center;
+    max-width:800px;
+    margin:0 auto 40px;
+}
+
+.titulo-area span{
+    font-size:.8rem;
+    letter-spacing:3px;
+    font-weight:bold;
+    color:#666;
+}
+
+.titulo-area h2{
+    font-size:3rem;
+    margin:15px 0;
+    color:#111;
+}
+
+.titulo-area p{
+    color:#444;
+    line-height:1.8;
+}
+
+.pdf-container{
+    background-color: white;
+    border-radius:20px;
+    overflow:hidden;
+
+    box-shadow:0 10px 30px rgba(0,0,0,.1);
+}
+
+.pdf-container iframe{
+    width:100%;
+    height:700px;
+    border:none;
+}
+
+@media(max-width:768px){
+
+    .titulo-area h2{
+        font-size:2rem;
+    }
+
+    .pdf-container iframe{
+        height:500px;
+    }
+
+}
+
+</style>
+<section id="galeria">
+
+    <div class="container">
+
+        <div class="titulo-galeria">
+            <span>MEMÓRIA VISUAL</span>
+            <h2>GALERIA</h2>
+            <p>
+                Registros, encontros, manifestações, arte e resistência
+                das travestis e pessoas trans ao longo do tempo.
+            </p>
+        </div>
+
+        <div class="masonry-gallery">
+
+            <div class="gallery-item">
+                <img src="foto1.jpg" alt="">
+            </div>
+
+            <div class="gallery-item">
+                <img src="foto2.jpg" alt="">
+            </div>
+
+            <div class="gallery-item">
+                <img src="foto3.jpg" alt="">
+            </div>
+
+            <div class="gallery-item">
+                <img src="foto4.jpg" alt="">
+            </div>
+
+            <div class="gallery-item">
+                <img src="foto5.jpg" alt="">
+            </div>
+
+            <div class="gallery-item">
+                <img src="foto6.jpg" alt="">
+            </div>
+
+            <div class="gallery-item">
+                <img src="foto7.jpg" alt="">
+            </div>
+
+            <div class="gallery-item">
+                <img src="foto8.jpg" alt="">
+            </div>
+
+            <div class="gallery-item">
+                <img src="foto9.jpg" alt="">
+            </div>
+
+            <div class="gallery-item">
+                <img src="foto10.jpg" alt="">
+            </div>
+
+            <div class="gallery-item">
+                <img src="foto11.jpg" alt="">
+            </div>
+
+            <div class="gallery-item">
+                <img src="foto12.jpg" alt="">
+            </div>
+
+            <div class="gallery-item">
+                <img src="foto13.jpg" alt="">
+            </div>
+
+            <div class="gallery-item">
+                <img src="foto14.jpg" alt="">
+            </div>
+
+            <div class="gallery-item">
+                <img src="foto15.jpg" alt="">
+            </div>
+
+            <div class="gallery-item">
+                <img src="foto16.jpg" alt="">
+            </div>
+
+            <div class="gallery-item">
+                <img src="foto17.jpg" alt="">
+            </div>
+
+            <div class="gallery-item">
+                <img src="A.png" alt="">
+            </div>
+
+            <div class="gallery-item">
+                <img src="G.png" alt="">
+            </div>
+
+            <div class="gallery-item">
+                <img src="L.png" alt="">
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<style>
+
+#galeria{
+    padding:100px 0;
+    background:#f5f5f5;
+}
+
+.titulo-galeria{
+    text-align:center;
+    margin-bottom:50px;
+}
+
+.titulo-galeria span{
+    letter-spacing:3px;
+    font-size:.8rem;
+    font-weight:bold;
+    color:#666;
+}
+
+.titulo-galeria h2{
+    font-size:3rem;
+    margin:15px 0;
+}
+
+.titulo-galeria p{
+    max-width:600px;
+    margin:auto;
+    color:#555;
+}
+
+.masonry-gallery{
+    columns:4;
+    column-gap:15px;
+}
+
+.gallery-item{
+    margin-bottom:15px;
+    break-inside:avoid;
+}
+
+.gallery-item img{
+    width:100%;
+    display:block;
+
+    border-radius:18px;
+
+    transition:.4s;
+
+    cursor:pointer;
+}
+
+/* efeito collage */
+
+.gallery-item:nth-child(odd) img{
+    transform:rotate(-2deg);
+}
+
+.gallery-item:nth-child(even) img{
+    transform:rotate(2deg);
+}
+
+.gallery-item img:hover{
+    transform:rotate(0deg) scale(1.05);
+
+    box-shadow:
+    0 10px 30px rgba(0,0,0,.2);
+}
+
+/* Tablet */
+
+@media(max-width:992px){
+
+    .masonry-gallery{
+        columns:3;
+    }
+
+}
+
+/* Celular */
+
+@media(max-width:768px){
+
+    .masonry-gallery{
+        columns:2;
+    }
+
+    .titulo-galeria h2{
+        font-size:2rem;
+    }
+
+}
+
+/* Celular pequeno */
+
+@media(max-width:480px){
+
+    .masonry-gallery{
+        columns:1;
+    }
+
+}
+
+</style>
+
+<section id="criadores">
+
+    <div class="container">
+
+        <div class="titulo-criadores">
+
+            <span>QUEM CONSTRÓI ESTE PROJETO</span>
+
+            <h2>CRIADORES</h2>
+
+            <p>
+                Este acervo digital é fruto do trabalho coletivo de pessoas
+                comprometidas com a memória, a cultura e a valorização das
+                travestilidades brasileiras.
+            </p>
+
+        </div>
+
+        <div class="row justify-content-center g-4">
+
+            <!-- Criador 1 -->
+
+            <div class="col-md-6">
+
+                <div class="criador-card">
+
+                    <img src="criador1.jpg" alt="Criador 1">
+
+                    <h3>Nome da Pessoa</h3>
+
+                    <span>Função ou atuação</span>
+
+                    <p>
+                        Pequena apresentação da pessoa,
+                        sua trajetória e participação
+                        no desenvolvimento do projeto.
+                    </p>
+
+                </div>
+
+            </div>
+
+            <!-- Criador 2 -->
+
+            <div class="col-md-6">
+
+                <div class="criador-card">
+
+                    <img src="criador2.jpg" alt="Criador 2">
+
+                    <h3>Nome da Pessoa</h3>
+
+                    <span>Função ou atuação</span>
+
+                    <p>
+                        Texto de apresentação do segundo
+                        integrante e sua contribuição
+                        para o projeto.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<style>
+
+#criadores{
+    padding:100px 0;
+    background:#f5f5f5;
+}
+
+.titulo-criadores{
+    text-align:center;
+    max-width:800px;
+    margin:0 auto 50px;
+}
+
+.titulo-criadores span{
+    letter-spacing:3px;
+    font-size:.8rem;
+    color:#666;
+    font-weight:bold;
+}
+
+.titulo-criadores h2{
+    font-size:3rem;
+    margin:15px 0;
+}
+
+.titulo-criadores p{
+    color:#555;
+}
+
+.criador-card{
+    background:white;
+
+    border-radius:20px;
+
+    padding:30px;
+
+    text-align:center;
+
+    box-shadow:
+    0 10px 30px rgba(0,0,0,.08);
+
+    transition:.3s;
+}
+
+.criador-card:hover{
+    transform:translateY(-8px);
+}
+
+.criador-card img{
+    width:180px;
+    height:180px;
+
+    object-fit:cover;
+
+    border-radius:50%;
+
+    margin-bottom:20px;
+}
+
+.criador-card h3{
+    margin-bottom:5px;
+}
+
+.criador-card span{
+    display:block;
+    color:#777;
+    margin-bottom:15px;
+}
+
+.criador-card p{
+    color:#555;
+    line-height:1.7;
+}
+
+</style>
+<footer id="footer">
+
+    <div class="container">
+
+        <div class="footer-top">
+
+            <h2>
+                TRAVESTILIDADES
+            </h2>
+
+            <p>
+                Memória, resistência, arte e existência.
+            </p>
+
+        </div>
+
+        <div class="footer-grid">
+
+            <div>
+
+                <h4>Projeto</h4>
+
+                <ul>
+                    <li><a href="#inicio">Início</a></li>
+                    <li><a href="#xica">Xica Manicongo</a></li>
+                    <li><a href="#transpolitizartes">Transpolitizartes</a></li>
+                    <li><a href="#galeria">Galeria</a></li>
+                </ul>
+
+            </div>
+
+            <div>
+
+                <h4>Acervo</h4>
+
+                <ul>
+                    <li><a href="#jornal-historico">Jornais</a></li>
+                    <li><a href="#acervo">Vídeos</a></li>
+                    <li><a href="#travestis-baixada">Memórias</a></li>
+                </ul>
+
+            </div>
+
+            <div>
+
+                <h4>Contato</h4>
+
+                <ul>
+                    <li>lima.matheus.oliveira96@email.com</li>
+                    <li>@ozzyson</li>
+                    <li>São Vicente - Brasil</li>
+                </ul>
+
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+
+            <p>
+                © 2026 Travestilidades • Todos os direitos reservados.
+            </p>
+
+            <p>
+                Desenvolvido por Matheus Lima & Sandro Raphael
+            </p>
+
+        </div>
+
+    </div>
+
+</footer>
+
+<style>
+
+#footer{
+    background:#0a0a0a;
+    color:white;
+    padding:80px 0 30px;
+}
+
+.footer-top{
+    text-align:center;
+    margin-bottom:60px;
+}
+
+.footer-top h2{
+    font-size:4rem;
+    font-weight:900;
+    letter-spacing:3px;
+    margin-bottom:10px;
+}
+
+.footer-top p{
+    color:#999;
+}
+
+.footer-grid{
+    display:grid;
+    grid-template-columns:
+    repeat(auto-fit,minmax(220px,1fr));
+
+    gap:40px;
+
+    margin-bottom:50px;
+}
+
+.footer-grid h4{
+    margin-bottom:20px;
+    text-transform:uppercase;
+    letter-spacing:2px;
+}
+
+.footer-grid ul{
+    list-style:none;
+    padding:0;
+}
+
+.footer-grid li{
+    margin-bottom:10px;
+    color:#bbb;
+}
+
+.footer-grid a{
+    text-decoration:none;
+    color:#bbb;
+    transition:.3s;
+}
+
+.footer-grid a:hover{
+    color:white;
+}
+
+.footer-bottom{
+    border-top:1px solid rgba(255,255,255,.1);
+
+    padding-top:25px;
+
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+
+    gap:10px;
+}
+
+.footer-bottom p{
+    color:#777;
+    margin:0;
+}
+
+@media(max-width:600px){
+
+    .footer-top h2{
+        font-size:2.5rem;
+    }
+
+    .footer-bottom{
+        flex-direction:column;
+        text-align:center;
+    }
+
+}
+
+</style>
+
+
+    <!-- Bootstrap JS -->
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    
+
+
 </body>
+
 </html>
