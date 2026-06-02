@@ -1,1 +1,133 @@
 
+.flip-card{
+    background: transparent;
+    height: 350px;
+    perspective: 1000px;
+}
+
+.flip-card-inner{
+    position: relative;
+    width: 100%;
+    height: 100%;
+
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+}
+
+.flip-card:hover .flip-card-inner{
+    transform: rotateY(180deg);
+}
+
+.flip-card-front,
+.flip-card-back{
+    position: absolute;
+
+    width: 100%;
+    height: 100%;
+
+    backface-visibility: hidden;
+
+    border-radius: 20px;
+    overflow: hidden;
+
+    box-shadow: 0 10px 25px rgba(0,0,0,.15);
+}
+
+.flip-card-front{
+    background: #fff;
+}
+
+.flip-card-front img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.flip-card-front h5{
+    position: absolute;
+    bottom: 15px;
+    left: 15px;
+
+    color: white;
+    font-weight: bold;
+}
+
+.flip-card-back{
+    background: #111;
+    color: white;
+
+    transform: rotateY(180deg);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    padding: 25px;
+    text-align: center;
+}
+
+.flip-card-inner.active{
+    transform: rotateY(180deg);
+}
+.carouselsec{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    background:url("Bc.png");
+    background-size:cover;
+    background-position:center;
+}
+#xica{
+    padding: 80px 0;
+    background-color: #D5D5D5D5;
+}
+
+#xica h2{
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+#xica p{
+    font-size: 1rem;
+    line-height: 1.7;
+    color: #444;
+}
+
+#xica img{
+    width: 100%;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+}
+
+#xica span{
+    color: #666;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+#demo{
+    max-width:500px;
+    margin:auto;
+}
+
+.carousel-item img{
+    width:80%;
+    border-radius:30px;
+    margin:auto;
+    box-shadow:0 15px 40px rgba(0,0,0,.3);
+}
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: var(--preto);
+            color: var(--branco);
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
