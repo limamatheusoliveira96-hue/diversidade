@@ -72,116 +72,52 @@ body{
     border-radius:20px;
 }
 
-/* =========================
-   MENU
-========================= */
+ /* NAVBAR */
 
-.museum-nav{
-    position:fixed;
-    top:0;
-    left:0;
-    width:100%;
-    z-index:1000;
+        .navbar {
+            background: rgba(0, 0, 0, 0.35);
+            backdrop-filter: blur(12px);
+        }
 
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
+        .navbar-brand {
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
 
-    padding:18px 35px;
+        .navbar-toggler {
+            border: none;
+        }
 
-    background:rgba(0,0,0,.55);
+        .navbar-toggler:focus {
+            box-shadow: none;
+        }
 
-    backdrop-filter:blur(18px);
+        /* OFFCANVAS */
 
-    border-bottom:
-    1px solid rgba(255,255,255,.08);
-}
+        .offcanvas {
+            background: #111;
+        }
 
-.logo{
-    font-family:'Bebas Neue', sans-serif;
+        .offcanvas-title {
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
 
-    font-size:1.3rem;
+        .nav-link {
+            color: white;
+            font-size: 1.1rem;
+            padding: 1rem 0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
 
-    letter-spacing:6px;
-
-    color:var(--rosa);
-}
-
-.menu{
-    display:flex;
-    gap:30px;
-    list-style:none;
-    margin:0;
-}
-
-.menu a{
-    color:white;
-
-    text-decoration:none;
-
-    font-size:.8rem;
-
-    text-transform:uppercase;
-
-    letter-spacing:2px;
-
-    position:relative;
-}
-
-.menu a::after{
-    content:"";
-
-    position:absolute;
-
-    left:0;
-    bottom:-5px;
-
-    width:0%;
-    height:1px;
-
-    background:var(--rosa);
-
-    transition:.4s;
-}
-
-.menu a:hover::after{
-    width:100%;
-}
-
-/* =========================
-   BOTÃO VOLTAR
-========================= */
-
-.back-btn{
-    position:fixed;
-
-    top:90px;
-    left:20px;
-
-    color:white;
-
-    text-decoration:none;
-
-    border:1px solid rgba(255,255,255,.15);
-
-    backdrop-filter:blur(10px);
-
-    background:rgba(255,255,255,.05);
-
-    padding:10px 18px;
-
-    border-radius:50px;
-
-    font-size:.75rem;
-
-    transition:.4s;
-}
-
-.back-btn:hover{
-    background:rgba(255,79,216,.2);
-}
-
-/* =========================
+        .nav-link:hover {
+            color: #aaa;
+        }
+   
+   
+   /* =========================
    HERO
 ========================= */
 
@@ -235,7 +171,7 @@ body{
 
     grid-template-columns:repeat(6,1fr);
 
-    grid-auto-rows:140px;
+    grid-auto-rows:280px;
 
     gap:14px;
 
@@ -459,28 +395,119 @@ body{
     .gallery{
         padding:15px;
     }
+
+   .modal-content{
+    background:transparent;
+}
+
+#fotoGrande{
+    max-height:90vh;
+    width:auto;
+    margin:auto;
+    display:block;
+    border-radius:10px;
+}
 }</style>
 
 </head>
 
 <body>
 
-<!-- MENU -->
+ <!-- NAVBAR -->
 
-<nav class="museum-nav">
-    <div class="logo">ACERVO TRAVESTI</div>
+    <nav class="navbar navbar-dark fixed-top">
+        <div class="container">
 
-    <ul class="menu">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="#">Galeria</a></li>
-        <li><a href="#sobre">Sobre</a></li>
-        <li><a href="#acervo">Acervo</a></li>
-    </ul>
-</nav>
+            <a class="navbar-brand" href="#">
+                TRANSPOLITIZARTES
+            </a>
 
-<!-- VOLTAR -->
+            <button class="navbar-toggler"
+                type="button"
+                data-bs-toggle="offcanvas"
+                data-bs-target="#menu">
 
-<a class="back-btn" href="index.html">← Voltar</a>
+                <span class="navbar-toggler-icon"></span>
+
+            </button>
+
+        </div>
+    </nav>
+
+    <!-- MENU LATERAL -->
+
+    <div class="offcanvas offcanvas-end text-white"
+        tabindex="-1"
+        id="menu">
+
+        <div class="offcanvas-header">
+
+            <h5 class="offcanvas-title">
+                Menu
+            </h5>
+
+            <button type="button"
+                class="btn-close btn-close-white"
+                data-bs-dismiss="offcanvas">
+            </button>
+
+        </div>
+
+        <div class="offcanvas-body">
+
+            <ul class="navbar-nav">
+
+                <li>
+                    <a class="nav-link" href="#inicio">
+                        Início
+                    </a>
+                </li>
+
+                <li>
+                    <a class="nav-link" href="#xica">
+                        Primeira Travesti
+                    </a>
+                </li>
+
+                <li>
+                    <a class="nav-link" href="#transpolitizartes">
+                        Transpolitizartes
+                    </a>
+                </li>
+
+                <li>
+                    <a class="nav-link" href="#baixada">
+                        Travestis da Baixada
+                    </a>
+                </li>
+               
+            <li>
+    <a class="nav-link" href="#arquivo">Acervo Audiovisual</a> </li>
+                <li>
+                    <a class="nav-link" href="#lampiao">
+                        Jornal Lampião </a>
+                </li>
+
+                <li>
+                    <a class="nav-link" href="#galeria">
+                        Galeria
+                    </a>
+                </li>
+
+                <li>
+                    <a class="nav-link" href="#sobre">
+                        Sobre
+                    </a>
+                </li>
+
+            </ul>
+
+        </div>
+
+    </div>
+
+
+
 
 <!-- HERO -->
 
@@ -621,6 +648,40 @@ body{
     <h2 style="color:var(--rosa)">Acervo Vivo</h2>
     <p>Imagens, corpos e histórias que constroem memória coletiva.</p>
 </section>
+<div class="modal fade" id="fotoModal" tabindex="-1">
 
+    <div class="modal-dialog modal-xl modal-dialog-centered">
+
+        <div class="modal-content bg-dark border-0">
+
+            <img id="fotoGrande"
+                 src=""
+                 class="img-fluid"
+                 alt="Imagem ampliada">
+
+        </div>
+
+    </div>
+
+</div>
+   <script>
+
+document.querySelectorAll('.item img').forEach(img => {
+
+    img.addEventListener('click', () => {
+
+        document.getElementById('fotoGrande').src = img.src;
+
+        const modal = new bootstrap.Modal(
+            document.getElementById('fotoModal')
+        );
+
+        modal.show();
+
+    });
+
+});
+
+</script>
 </body>
 </html>
