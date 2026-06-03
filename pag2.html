@@ -2,81 +2,99 @@
 <html lang="pt-BR">
 
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Acervo Travesti</title>
+    <title>Manifesto</title>
 
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@400;700&display=swap" rel="stylesheet">
-<style>
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
 
-/* =========================
-   PALETA TRAVESTI
-========================= */
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Bebas+Neue&display=swap');
+    <!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Libre+Baskerville&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --preto: #0d0d0d;
+            --branco: #ffffff;
+                --cinza: #d9d9d9;}
+        
+.carouselsec{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
 
-/* =========================
-   PALETA
-========================= */
-
-
-   
- 
-
-/* =========================
-   BODY
-========================= */
-   /* Suas variáveis de cor */
-:root {
-  --fundo: #f5f0ff;
-  --fundo2: #d9c8ff;
-  --fundo-escuro: #1a1525; /* Essencial para o contraste punk */
+    background:url("30.png");
+    background-size:cover;
+    background-position:center;
+}
+#xica{
+    padding: 80px 0;
+    background-color: #D5D5D5D5;
 }
 
-
-
-/* Camada de Ruído Grunge sobre o fundo */
-
-
-
-
-
-
-}
-body{
-   background-image: url("30.png");
+#xica h2{
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 20px;
 }
 
-
-    font-family:'Cormorant Garamond', serif;
-
-    overflow-x:hidden;
-    padding-top:80px;
+#xica p{
+    font-size: 1rem;
+    line-height: 1.7;
+    color: #444;
 }
 
-/* =========================
-   SCROLLBAR
-========================= */
-
-::-webkit-scrollbar{
-    width:8px;
+#xica img{
+    width: 100%;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.15);
 }
 
-::-webkit-scrollbar-track{
-    background:#0a0610;
+#xica span{
+    color: #666;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+#demo{
+    max-width:500px;
+    margin:auto;
 }
 
-::-webkit-scrollbar-thumb{
-    background:var(--rosa);
-    border-radius:20px;
+.carousel-item img{
+    width:80%;
+    border-radius:30px;
+    margin:auto;
+    box-shadow:0 15px 40px rgba(0,0,0,.3);
+}
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
- /* NAVBAR */
+        body {
+            background: var(--preto);
+            color: var(--branco);
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* NAVBAR */
 
         .navbar {
-           
             background: rgba(0, 0, 0, 0.35);
             backdrop-filter: blur(12px);
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000
         }
 
         .navbar-brand {
@@ -96,7 +114,7 @@ body{
         /* OFFCANVAS */
 
         .offcanvas {
-            background: #000;
+            background: #111;
         }
 
         .offcanvas-title {
@@ -115,85 +133,77 @@ body{
         .nav-link:hover {
             color: #aaa;
         }
-   
-   
-  
 
-/* =========================
-   RESPONSIVO
-========================= */
+        /* HERO */
 
-@media(max-width:992px){
+        .hero {
+            min-height: 100vh;
 
-    .hero h1{
-        font-size:4rem;
-        letter-spacing:6px;
-    }
+            background:
+                linear-gradient(
+                    rgba(0,0,0,.55),
+                    rgba(0,0,0,.55)
+                ),
+                url('Bgi.png');
 
-    .gallery{
-        grid-template-columns:repeat(2,1fr);
-        grid-auto-rows:220px;
-    }
+            background-size: cover;
+            background-position: center;
 
-    .big,
-    .wide,
-    .tall,
-    .medium{
-        grid-column:span 2;
-        grid-row:auto;
-    }
+            display: flex;
+            align-items: center;
+        }
 
-    .menu{
-        gap:15px;
-    }
-}
+        .hero-content {
+            max-width: 700px;
+        }
 
-@media(max-width:600px){
+        .hero small {
+            letter-spacing: 4px;
+            text-transform: uppercase;
+        }
 
-    .museum-nav{
-        flex-direction:column;
-        gap:10px;
-    }
+        .hero h1, p {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3rem, 8vw, 7rem);
+            line-height: .9;
+            margin: 1rem 0;
+        }
 
-    .hero{
-        padding-top:160px;
-    }
+        
 
-    .hero h1{
-        font-size:3rem;
-    }
+        .btn-editorial {
+            margin-top: 2rem;
+            border: 1px solid white;
+            color: white;
+            padding: 12px 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border-radius: 0;
+            transition: .3s;
+        }
 
-    .hero p{
-        font-size:1rem;
-    }
+        .btn-editorial:hover {
+            background: white;
+            color: black;
+        }
 
-    .gallery{
-        padding:15px;
-    }
+        /* SEÇÕES */
 
-   .modal-content{
-    background:transparent;
-}
+        section {
+            padding: 100px 0;
+        }
 
-#fotoGrande{
-    max-height:90vh;
-    width:auto;
-    margin:auto;
-    display:block;
-    border-radius:10px;
-}
-   #bgimg
-   {
-
-      background-image: url("30.png");
-   }
-}</style>
-
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            margin-bottom: 2rem;
+        }
+    </style>
 </head>
 
 <body>
 
- <!-- NAVBAR -->
+    <!-- NAVBAR -->
 
     <nav class="navbar navbar-dark fixed-top">
         <div class="container">
@@ -238,7 +248,7 @@ body{
             <ul class="navbar-nav">
 
                 <li>
-                    <a class="nav-link" href="index.html" >
+                    <a class="nav-link" href="index.html">
                         Início
                     </a>
                 </li>
@@ -262,19 +272,19 @@ body{
                 </li>
                
             <li>
-    <a class="nav-link" href="index.html">Acervo Audiovisual</a> </li>
+    <a class="nav-link" href="#arquivo">Acervo Audiovisual</a> </li>
                 <li>
                     <a class="nav-link" href="index.html">
                         Jornal Lampião </a>
                 </li>
 
                 <li>
-                    <a class="nav-link" href="#galeria">
+                    <a class="nav-link" href="index.html">
                         Galeria
                     </a>
                 </li>
-                   <li>
-                    <a class="nav-link" href="#bgimg">
+                    <li>
+                    <a class="nav-link" href="pag2.html">
                         Manifesto
                     </a>
                 </li>
@@ -290,44 +300,282 @@ body{
 
     </div>
 
+    <!-- HERO -->
+
+    <header class="hero" id="inicio">
+
+        <div class="container">
+
+            <div class="hero-content">
+
+                <small>
+                   Manifestar-se - Poética - Viceras
+                </small>
+
+                <h1>
+                    Manifesto
+                </h1>
+
+                <p>
+                
+
+Eu sou travesti.
+
+Não um erro.
+Não um desvio.
+Não uma exceção à regra.
+
+Sou a regra que vocês tentaram apagar.
+
+Nasci em um mundo que escreveu meu nome com violência, mas aprendi a reescrevê-lo com coragem. Cada passo que dou carrega a memória das que vieram antes, das que tombaram sem justiça, das que foram expulsas de casa, da escola, da cidade, da história.
+
+Carrego seus nomes como quem carrega fogo.
+
+Ser travesti é transformar sobrevivência em linguagem.
+É fazer do próprio corpo um território de invenção.
+É existir apesar das estatísticas, apesar do medo, apesar dos decretos invisíveis que tentam nos condenar ao silêncio.
+
+Mas não estamos em silêncio.
+
+Somos a voz rouca das esquinas.
+Somos o brilho que resiste nas madrugadas.
+Somos a maquiagem que desafia a norma.
+Somos o salto que pisa sobre séculos de controle.
+Somos a beleza que o sistema tentou destruir e não conseguiu.
+
+Não queremos tolerância.
+
+Tolerância é o privilégio de quem acredita ter o direito de nos permitir existir.
+
+Queremos dignidade.
+Queremos memória.
+Queremos educação.
+Queremos trabalho.
+Queremos saúde.
+Queremos envelhecer.
+
+Queremos viver.
+
+A travestilidade não é apenas identidade.
+É uma tecnologia de resistência.
+Uma forma radical de imaginar futuros.
+Uma recusa permanente às fronteiras impostas ao gênero, ao desejo e à liberdade.
+
+Somos filhas da transformação.
+
+Enquanto houver uma travesti ocupando a rua, a universidade, a arte, a política, a literatura ou o sonho, haverá uma rachadura aberta na estrutura que tenta nos apagar.
+
+E por essa rachadura entra a luz.
+
+Não pedimos licença para existir.
+
+Chegamos.
+Permanecemos.
+Criamos.
+
+Somos memória viva.
+Somos revolta.
+Somos afeto.
+Somos comunidade.
+
+Somos a prova de que nenhum sistema é capaz de controlar completamente um corpo que decidiu ser livre.
+
+E diante de um mundo que insiste em nos negar, respondemos com a própria existência:
+
+**Travesti vive.
+Travesti cria.
+Travesti transforma.
+Travesti permanece.**
+
+Porque nossa presença não é apenas resistência.
+
+**É revolução.**
+
+                </p>
+
+                 
+            </div>
+
+        </div>
+
+    </header>
+   <footer id="footer">
+
+    <div class="container">
+
+        <div class="footer-top">
+
+            <h3>
+                TRAVESTILIDADES
+            </h3>
+
+            <p>
+                Memória, resistência, arte e existência.
+            </p>
+
+        </div>
+
+        <div class="footer-grid">
+
+            <div>
+
+                <h4>Projeto</h4>
+
+                <ul>
+                    <li><a href="#inicio">Início</a></li>
+                    <li><a href="#xica">Xica Manicongo</a></li>
+                    <li><a href="#transpolitizartes">Transpolitizartes</a></li>
+                    <li><a href="#galeria">Galeria</a></li>
+                </ul>
+
+            </div>
+
+            <div>
+
+                <h4>Acervo</h4>
+
+                <ul>
+                    <li><a href="#jornal-historico">Jornais</a></li>
+                    <li><a href="#acervo">Vídeos</a></li>
+                    <li><a href="#baixada">Memórias</a></li>
+                    <li><a href="#lampiao">Jornal Lampião</li>
+                </ul>
+
+            </div>
+
+            <div>
+
+                <h4>Contato</h4>
+
+                <ul>
+                    <li>lima.matheus.oliveira96@email.com</li>
+                    <li>oliveirasandroraphael@email.com</li>
+                    <li>@ozzyson</li>
+                    <li>São Vicente - Brasil</li>
+                </ul>
+
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            <p>
+               <small> Desenvolvido por Matheus Lima & Sandro Raphael</small>
+            </p>
+            <p>
+                © 2026 Travestilidades • Todos os direitos reservados.
+            </p>
 
 
 
-<!-- HERO -->
-<main class="grunge-bg">
-  <section id="cartaz-container">
-    <img src="31.png" alt="Cartaz Punk com Texto" class="imagem-frente">
-    
-    </section>
-</main>
-<!-- ACERVO -->
+        </div>
 
-<section id="acervo" style="padding:40px;text-align:center;">
-    <h2 style="color: black">MANIFESTO</h2>
-    
-</section>
+    </div>
+
+</footer>
+
+<style>
+
+#footer{
+    background:#878787;
+    color:white;
+    padding:80px 0 30px;
+}
+
+.footer-top{
+    text-align:center;
+    margin-bottom:60px;
+}
+
+.footer-top h2{
+    font-size:2rem;
+    font-weight:900;
+    letter-spacing:3px;
+    margin-bottom:10px;
+}
+
+.footer-top p{
+    color:#999;
+}
+
+.footer-grid{
+    display:grid;
+    grid-template-columns:
+    repeat(auto-fit,minmax(220px,1fr));
+
+    gap:40px;
+
+    margin-bottom:50px;
+}
+
+.footer-grid h4{
+    margin-bottom:20px;
+    text-transform:uppercase;
+    letter-spacing:2px;
+}
+
+.footer-grid ul{
+    list-style:none;
+    padding:0;
+}
+
+.footer-grid li{
+    margin-bottom:10px;
+    color:#bbb;
+}
+
+.footer-grid a{
+    text-decoration:none;
+    color:#bbb;
+    transition:.3s;
+}
+
+.footer-grid a:hover{
+    color:white;
+}
+
+.footer-bottom{
+    border-top:1px solid rgba(255,255,255,.1);
+
+    padding-top:25px;
+
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+
+    gap:10px;
+}
+
+.footer-bottom p{
+    color:#777;
+    margin:0;
+}
+
+@media(max-width:600px){
+
+    .footer-top h2{
+        font-size:2.5rem;
+    }
+
+    .footer-bottom{
+        flex-direction:column;
+        text-align:center;
+    }
+
+}
+
+</style>
 
 
+    <!-- Bootstrap JS -->
 
-   <script>
-
-document.querySelectorAll('.item img').forEach(img => {
-
-    img.addEventListener('click', () => {
-
-        document.getElementById('fotoGrande').src = img.src;
-
-        const modal = new bootstrap.Modal(
-            document.getElementById('fotoModal')
-        );
-
-        modal.show();
-
-    });
-
-});
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+window.onload = function () {
+    window.scrollTo(0, 0);
+};
 </script>
-   <script>
+<script>
 document.querySelectorAll('.offcanvas .nav-link').forEach(link => {
     link.addEventListener('click', () => {
         const offcanvasElement = document.querySelector('.offcanvas.show');
@@ -339,7 +587,6 @@ document.querySelectorAll('.offcanvas .nav-link').forEach(link => {
     });
 });
 </script>
-   
- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>
