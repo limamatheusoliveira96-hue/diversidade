@@ -11,8 +11,10 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Libre+Baskerville&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&display=swap" rel="stylesheet">
+    
     <style>
         :root {
             --preto: #0d0d0d;
@@ -564,7 +566,7 @@
     width:100%;
     height:100%;
 
-    transition:transform .8s;
+    transition:transform 0.8s;
     transform-style:preserve-3d;
 }
 
@@ -711,20 +713,23 @@ document.querySelectorAll('.flip-card').forEach(card => {
 
 
     <br>
-    <div class="video-link">
-    <h4><strong>MANIFESTO TRANSPOFAGICO </strong></h4>
-    <p>
-        Registro da Peça.
-        <small>Conteúdo sensível</small></p>
-       
-       
-<a href="https://youtu.be/4Yy7sO4ofW0?si=TmndEPF7L7jXkY9k"
+  <div class="video-link">
+    <h4><strong>🎭 MANIFESTO TRANSPOFÁGICO</strong></h4>
+
+    <p class="descricao-video">
+        Registro audiovisual da peça.
+    </p>
+
+    <p class="aviso-sensivel">
+        ⚠️ Contém temas e imagens sensíveis. Recomendado para público adulto.
+    </p>
+
+    <a href="https://youtu.be/4Yy7sO4ofW0?si=TmndEPF7L7jXkY9k"
        target="_blank"
-       class="btn btn-outline-dark">
-        Assistir ao vídeo
+       class="btn-video">
+       ▶ Assistir ao Manifesto
     </a>
 </div>
-
 
 
                 </div>
@@ -736,7 +741,45 @@ document.querySelectorAll('.flip-card').forEach(card => {
 </section>
 
 <style>
+<!-- definição da div peça teatral.-->
 
+    .video-link{
+    text-align:center;
+    padding:30px;
+    border:2px solid #ddd;
+    border-radius:15px;
+}
+
+.descricao-video{
+    font-size:1.1rem;
+    margin-bottom:10px;
+}
+
+.aviso-sensivel{
+    font-weight:bold;
+    color:#b22222;
+    margin-bottom:20px;
+}
+
+.btn-video{
+    display:inline-block;
+    padding:15px 30px;
+    background:#111;
+    color:#fff;
+    text-decoration:none;
+    border-radius:50px;
+    font-weight:bold;
+    letter-spacing:1px;
+    transition:0.3s;
+}
+
+.btn-video:hover{
+    transform:scale(1.05);
+    background:#333;
+    color:#fff;
+}
+
+    <!--travestis da baixada-->
 #baixada{
     padding:80px 0;
     background:#111;
@@ -851,14 +894,14 @@ document.querySelectorAll('.flip-card').forEach(card => {
                 <a href="https://youtu.be/2L_-23lOOOI?feature=shared" target="_blank" class="video-card">
 
                     <div class="video-thumb">
-                    <<img src="Poeacara.jpg" alt="imagem de um por do sol e tem escrito Põe a Cara no Sol" width="100%">
+                    <img src="Poeacara.jpg" alt="imagem de um por do sol e tem escrito Põe a Cara no Sol" width="100%">
                     </div>
 
                     <div class="video-info">
                         <h3>Põe a Cara no Sol-Memória LGBT em SãoVicente</h3>
                         <p>
                     É um documentário e livro-memória com depoimentos de pessoas LGBT+ de São Vicente, narrando histórias individuais que se entrecruzam com a do território. Compilar, organizar e registrar essas memórias é valorar a nossa identidade enquanto LGBTs.
-A memória é uma ferramenta política!🏳️‍🌈🏳‍⚧
+A memória é uma ferramenta política!
                         </p>
                     </div>
 
@@ -945,6 +988,7 @@ A memória é uma ferramenta política!🏳️‍🌈🏳‍⚧
     display:block;
 
     background:#f59292;
+    
 
     border-radius:20px;
 
@@ -990,7 +1034,7 @@ A memória é uma ferramenta política!🏳️‍🌈🏳‍⚧
 
 </style>
 
-<section id="lampiao" style="padding:80px 20px; background:#FFF091; color:#000;">
+<section id="arquivo" style="padding:80px 20px; background:#FFF091; color:#000;">
 
     <div style="max-width:900px; margin:0 auto;">
 
@@ -1267,10 +1311,14 @@ Desenvolvedor(a) em formação, focado(a) em criação de sites e interfaces web
     background:#f5f5f5;
 }
 
-.titulo-criadores{
-    text-align:center;
-    max-width:800px;
-    margin:0 auto 50px;
+..titulo-criadores{
+    font-family: 'Oswald', sans-serif;
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 50px;
+    font-size: 3rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
 }
 
 .titulo-criadores span{
