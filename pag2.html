@@ -40,31 +40,9 @@
 
 
 
-#cartaz-container {
-  position: relative;
-  z-index: 2; /* Garante que fica na frente do ruído do fundo */
-  max-width: 500px; /* Largura máxima do seu cartaz na tela */
-  width: 90%;       /* Responsivo para celulares */
-  
 
-  transform: rotate(-2deg);
-  
 
-  
-  transition: transform 0.3s ease;
-}
 
-/* Efeito interativo ao passar o mouse (opcional, bem dinâmico) */
-#cartaz-container:hover {
-  transform: rotate(0deg) scale(1.02);
-}
-
-.imagem-frente {
-  width: 100%;
-  height: auto;
-  display: block;
-  border: 4px solid #fff; /* Borda branca simulando papel fotográfico/zine */
-  filter: contrast(1.1);  /* Deixa a imagem da frente com mais contraste */
 }
 body{
    background-image: url("30.png");
@@ -96,6 +74,7 @@ body{
  /* NAVBAR */
 
         .navbar {
+           
             background: rgba(0, 0, 0, 0.35);
             backdrop-filter: blur(12px);
         }
@@ -117,7 +96,7 @@ body{
         /* OFFCANVAS */
 
         .offcanvas {
-            background: #111;
+            background: #000;
         }
 
         .offcanvas-title {
@@ -126,7 +105,7 @@ body{
         }
 
         .nav-link {
-            color: black;
+            color: white;
             font-size: 1.1rem;
             padding: 1rem 0;
             text-transform: uppercase;
