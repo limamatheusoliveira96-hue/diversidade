@@ -72,7 +72,34 @@ body{
     background:var(--rosa);
     border-radius:20px;
 }
+.grunge-bg {
+  width: 100vw;
+  height: 100vh;
+  /* Suas cores como variáveis */
+  --fundo: #f5f0ff;
+  --fundo2: #d9c8ff;
+  
+  /* Gradiente base desalinhado e dramático */
+  background: radial-gradient(circle at 80% 20%, var(--fundo) 0%, var(--fundo2) 70%, #1a1525 100%);
+  position: relative;
+  overflow: hidden;
+}
 
+/* A mágica do Grunge: Camada de textura granulada */
+.grunge-bg::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.15; /* Controla a intensidade da "sujeira" */
+  mix-blend-mode: overlay; /* Mistura o ruído com o gradiente */
+  pointer-events: none;
+  
+  /* Gerador de ruído SVG embutido */
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
  /* NAVBAR */
 
         .navbar {
@@ -407,6 +434,11 @@ body{
     display:block;
     border-radius:10px;
 }
+   #bgimg
+   {
+
+      background-image: url("30.png");
+   }
 }</style>
 
 </head>
@@ -493,9 +525,13 @@ body{
                         Galeria
                     </a>
                 </li>
-
+                   <li>
+                    <a class="nav-link" href="index.html">
+                        Manifesto
+                    </a>
+                </li>
                 <li>
-                    <a class="nav-link" href="#sobre#index.html">
+                    <a class="nav-link" href="index.html">
                         Sobre
                     </a>
                 </li>
@@ -511,43 +547,30 @@ body{
 
 <!-- HERO -->
 
-
+<main class="grunge-bg">
 <!-- GALERIA 20 IMAGENS -->
 
-<section class="gallery">
+<section class="gallery" id="bgimg">
 
 <!-- 1 -->
 <div class="item big">
-    <img src="1.png">
-    <div class="overlay">Memória 01</div>
+    <img src="31.png" alt="">
+    
 </div>
 
 
 
 </section>
-
+</main>
 <!-- ACERVO -->
 
 <section id="acervo" style="padding:40px;text-align:center;">
-    <h2 style="color:var(--rosa)">Acervo Vivo</h2>
-    <p>Imagens, corpos e histórias que constroem memória coletiva.</p>
+    <h2 style="color: black">MANIFESTO</h2>
+    
 </section>
-<div class="modal fade" id="fotoModal" tabindex="-1">
 
-    <div class="modal-dialog modal-xl modal-dialog-centered">
 
-        <div class="modal-content bg-dark border-0">
 
-            <img id="fotoGrande"
-                 src=""
-                 class="img-fluid"
-                 alt="Imagem ampliada">
-
-        </div>
-
-    </div>
-
-</div>
    <script>
 
 document.querySelectorAll('.item img').forEach(img => {
