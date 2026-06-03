@@ -126,18 +126,19 @@ body{
     padding:120px 20px 80px;
     text-align:center;
 }
-
-.hero h1{
-  font-family: 'Trille';
-    /* O '../' serve para sair da pasta 'css' e entrar na pasta 'fonts' */
+@font-face {
+    font-family: 'Trille';
     src: url('TrilleGX.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
-    font-size:7rem;
+}
 
-    letter-spacing:12px;
-
-    margin-bottom:15px;
+.hero h1{
+    font-family: 'Trille', sans-serif;
+    font-size: 7rem;
+    letter-spacing: 12px;
+    margin-bottom: 15px;
+}
 
     background:
     linear-gradient(
