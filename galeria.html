@@ -464,27 +464,27 @@ body{
                 </li>
 
                 <li>
-                    <a class="nav-link" href="#xica#index.html">
+                    <a class="nav-link" href="index.html">
                         Primeira Travesti
                     </a>
                 </li>
 
                 <li>
-                    <a class="nav-link" href="#transpolitizartes#index.html">
+                    <a class="nav-link" href="index.html">
                         Transpolitizartes
                     </a>
                 </li>
 
                 <li>
-                    <a class="nav-link" href="#baixada#index.html">
+                    <a class="nav-link" href="index.html">
                         Travestis da Baixada
                     </a>
                 </li>
                
             <li>
-    <a class="nav-link" href="#arquivo#index.html">Acervo Audiovisual</a> </li>
+    <a class="nav-link" href="index.html">Acervo Audiovisual</a> </li>
                 <li>
-                    <a class="nav-link" href="#lampiao">
+                    <a class="nav-link" href="index.html">
                         Jornal Lampião </a>
                 </li>
 
@@ -676,6 +676,18 @@ document.querySelectorAll('.item img').forEach(img => {
 
     });
 
+});
+</script>
+   <script>
+document.querySelectorAll('.offcanvas .nav-link').forEach(link => {
+    link.addEventListener('click', () => {
+        const offcanvasElement = document.querySelector('.offcanvas.show');
+
+        if (offcanvasElement) {
+            const offcanvas = bootstrap.Offcanvas.getInstance(offcanvasElement);
+            offcanvas.hide();
+        }
+    });
 });
 </script>
    
