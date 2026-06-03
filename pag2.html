@@ -34,24 +34,7 @@
   --fundo-escuro: #1a1525; /* Essencial para o contraste punk */
 }
 
-/* 1. O FUNDO (Ocupa a tela inteira e centraliza o conteúdo) */
-.grunge-bg {
-  width: 100vw;
-  min-height: 100vh;
-  margin: 0;
-  padding: 20px;
-  box-sizing: border-box;
-  
-  /* Gradiente Grunge Base */
-  background: radial-gradient(circle at 80% 20%, var(--fundo) 0%, var(--fundo2) 70%, var(--fundo-escuro) 100%);
-  position: relative;
-  overflow: hidden;
 
-  /* Flexbox para alinhar a imagem da frente exatamente no centro */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
 
 /* Camada de Ruído Grunge sobre o fundo */
 
@@ -66,8 +49,7 @@
 
   transform: rotate(-2deg);
   
-  /* Sombra pesada e "suja" (sem desfoque liso) */
-  box-shadow: 8px 8px 0px rgba(0, 0, 0, 0.8); 
+
   
   transition: transform 0.3s ease;
 }
@@ -144,7 +126,7 @@ body{
         }
 
         .nav-link {
-            color: white;
+            color: black;
             font-size: 1.1rem;
             padding: 1rem 0;
             text-transform: uppercase;
